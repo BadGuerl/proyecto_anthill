@@ -4,6 +4,7 @@ creamos una rama :rama_trabajo
 EN LOCAL:
  git checkout -b rama_trabajo  --> si no está creada
  git checkout rama_trabajo  --> si ya está creada
+ git pull origin register
  ....codificamos....
  git add .
  git commit -m feat "blabla"

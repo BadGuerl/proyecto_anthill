@@ -4,61 +4,25 @@ const bcrypt = require('bcrypt');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^.{8,}$/;
 
-// const superAdmins = (process.env.ADMIN_EMAILS || '')
-//   .split(',')
-//   .map(admin => admin.trim());
-
-const userSchema = new Schema(
-  {
-    name: {
-      type: String,
-      required: 'User name is mandatory',
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: 'Email is required',
-      match: [EMAIL_PATTERN, 'Invalid email'],
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    password: {
-      type: String,
-      required: 'Password is required',
-      match: [PASSWORD_PATTERN, 'Password needs at least 8 chars'],
-    },
-    // social: {
-    //   google: String
-    // },
-    // verified: {
-    //   date: Date,
-    //   token: {
-    //     type: String,
-    //     default: () =>
-    //       Math.random().toString(36).substr(2) +
-    //       Math.random().toString(36).substr(2) +
-    //       Math.random().toString(36).substr(2) +
-    //       Math.random().toString(36).substr(2) +
-    //       Math.random().toString(36).substr(2),
-    //   },
-    // },
-    avatar: {
-      type: String,
-      default: function() {
-        return `https://i.pravatar.cc/150?u=${this.id}`
-      }
-    }
+const userSchema = new Schema({
+  email: {
+    type: String,
+    required: 'Debes insertar un email',
+    match: [EMAIL_PATTERN, 'email no válido'],
+    unique: true,
+    lowercase: true,
+    trim: true,
   },
-  { timestamps: true },
-);
+  password: {
+    type: String,
+    required: 'Debes insertar una contraseña',
+    match: [PASSWORD_PATTERN, 'Debe tener al menos 8 caracteres'],
+  },
+}, {
+  timestamps: true
+}, );
 
 userSchema.pre('save', function (next) {
-
-//   console.log('superAdmins', superAdmins);
-//   if (superAdmins.includes(this.email)) {
-//     this.role = 'admin';
-//   }
 
   if (this.isModified('password')) {
     bcrypt.hash(this.password, 10).then((hash) => {

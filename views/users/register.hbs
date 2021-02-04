@@ -1,4 +1,4 @@
-<form method="POST" action="/register" enctype="application/x-www-form-urlencoded">
+<form method="POST" action="/register">
   <div class="mb-3">
     <label class="form-label">Email</label>
     <input name="email" value="{{ user.email }}" type="email" class="form-control {{#if errors.email }}is-invalid{{/if}}" aria-describedby="emailHelp" autocomplete="off">

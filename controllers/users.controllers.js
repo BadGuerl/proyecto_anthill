@@ -5,6 +5,7 @@ const User = require('../models/user.model');
 module.exports.register = (req, res, next) => {
   res.render('users/register');
 };
+
 module.exports.doRegister = (req, res, next) => {
   User.create(req.body)
     .then(user => res.redirect('/home'))
@@ -20,27 +21,30 @@ module.exports.doRegister = (req, res, next) => {
       }
     });
 };
-// module.exports.login = (req, res, next) => {
-//   res.render('users/login');
-// };
-// module.exports.doLogin = (req, res, next) => {
-//   User.findOne({ email: req.body.email })
-//     .then((user) => {
-//       if (user) {
-//         user.checkPassword(req.body.password).then((match) => {
-//           if (match) {
-//             req.session.currentUserId = user.id;
-//             res.redirect('/');
-//           } else {
-//             res.render('users/login', { user: req.body, errors: { password: 'invalid password' } });
-//           }
-//         });
-//       } else {
-//         res.render('users/login', { user: req.body, errors: { email: 'user not found' } });
-//       }
-//     })
-//     .catch(next);
-// };
+
+module.exports.login = (req, res, next) => {
+  res.render('users/login');
+};
+
+module.exports.doLogin = (req, res, next) => {
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (user) {
+        user.checkPassword(req.body.password).then((match) => {
+          if (match) {
+            // req.session.currentUserId = user.id;
+            res.redirect('/home');
+          } else {
+            res.render('users/login', { user: req.body, errors: { password: 'Contraseña no valida' } });
+          }
+        });
+      } else {
+        res.render('users/login', { user: req.body, errors: { email: 'Email no valido' } });
+      }
+    })
+    .catch(next);
+};
+
 // module.exports.logout = (req, res, next) => {
 //   req.session.destroy();
 //   res.redirect('/login');

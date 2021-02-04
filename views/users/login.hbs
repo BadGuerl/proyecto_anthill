@@ -1,0 +1,13 @@
+<form method="POST" action="/login">
+  <div class="mb-3">
+    <label class="form-label">Email de usuario</label>
+    <input name="email" value="{{ user.email }}" type="email" class="form-control {{#if errors.email }}is-invalid{{/if}}" aria-describedby="emailHelp">
+    {{#if errors.email }}<div class="invalid-feedback">{{ errors.email }}</div>{{/if}}
+  </div>
+  <div class="mb-3">
+    <label class="form-label" >Contraseña</label>
+    <input name="password" type="password" class="form-control {{#if errors.password }}is-invalid{{/if}}">
+    {{#if errors.password }}<div class="invalid-feedback">{{ errors.password }}</div>{{/if}}
+  </div>
+  <button type="submit" class="btn btn-primary">Entrar</button>
+</form>

@@ -1,16 +1,43 @@
 const createError = require('http-errors');
 const express = require ('express');
 const path = require('path');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const flash = require('connect-flash');
 
 require('./config/hbs.config');
 require('./config/db.config');
+const session = require('./config/session.config');
+require('./config/passport.config');
 
-const app = express ();
+const app = express();
 
 /**
  * Middlewares
  */
+app.use(session);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
+app.use((req, res, next) => {
+  // la variable path se podrá usar desde cualquier vista de hbs (/register, /posts)
+  res.locals.path = req.path;
+
+  // la variable currentUser representa al usuario logeado
+  res.locals.currentUser = req.user;
+
+  // Cargamos los mensajes de la cookie de flash en los locals para poder usarlos desde todas las vistas
+  const flashData = req.flash('data')
+    .reduce((data, message) => {
+      return {...data, ...JSON.parse(message)}
+    }, {});
+  Object.assign(res.locals, flashData);
+  
+  // Damos paso al siguiente middleware
+  next();
+});
 
 /**
  * View setup

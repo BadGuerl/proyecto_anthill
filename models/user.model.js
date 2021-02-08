@@ -18,6 +18,20 @@ const userSchema = new Schema({
     required: 'Debes insertar una contraseña',
     match: [PASSWORD_PATTERN, 'Debe tener al menos 8 caracteres'],
   },
+  nickname: {
+    type: String,
+    unique: true,
+  },
+  bio: {
+    type: String,
+    maxlength: 500
+  },
+  phoneNumber: {
+    type: Number,
+  },
+  avatarUrl:{ 
+    type: String, default: 'images/default-avatar.png' 
+  },
 }, {
   timestamps: true
 }, );

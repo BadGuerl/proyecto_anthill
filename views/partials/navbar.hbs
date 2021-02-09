@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    {{#if currentUser }} 
+    <a class="navbar-brand" href="/home">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/profile">Tu perfil</a>
+        <a class="nav-link active" href="/offers">Servicios</a>
+        <a class="nav-link active" href="/board">Tablón de sugerencias</a>
+        <a class="nav-link active" href="/new">Añadir</a>
+        <a class="nav-link disabled" href="/inicio" tabindex="-1" aria-disabled="true">Cerrar sesión</a>
+    {{else}} 
+      <a class="nav-link active" aria-current="page" href="/inicio">Inicio</a>
+      <a class="nav-link active" aria-current="page" href="/register">Registrate</a>
+      <a class="nav-link active" aria-current="page" href="/login">Iniciar sesión</a>
+    {{/if}}
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,115 @@
+[
+    {
+      "word": "Educación",
+      "value": 1
+    },
+    {
+      "word": "Comida",
+      "value": 1
+    },    
+    {
+      "word": "Reparaciones",
+      "value": 1
+    },    
+    {
+      "word": "Transporte",
+      "value": 1
+    },    
+    {
+      "word": "Domicilio",
+      "value": 1
+    },     
+    {
+      "word": "Cuidados",
+      "value": 1
+    },   
+    {
+      "word": "Idiomas",
+      "value": 2
+    },    
+    {
+      "word": "Inglés",
+      "value": 2
+    },
+    {
+        "word": "Francés",
+        "value": 2
+    }, 
+    {
+        "word": "Alemán",
+        "value": 2
+    },
+    {
+        "word": "Chino",
+        "value": 2
+    },
+    {
+        "word": "Matemáticas",
+        "value": 2
+    },
+    {
+        "word": "Química",
+        "value": 2
+    },
+    {
+        "word": "Preparación física",
+        "value": 2
+    },
+    {
+        "word": "Preparación nutricional",
+        "value": 2
+    },
+
+    {
+        "word": "Comida Vegetariana",
+        "value": 2
+    },
+    {
+        "word": "Comida saludable",
+        "value": 2
+    },
+    {
+        "word": "Comida",
+        "value": 2
+    },
+    {
+        "word": "Huerta",
+        "value": 2
+    },
+    {
+        "word": "Electricista",
+        "value": 2
+    },
+    {
+        "word": "Informática",
+        "value": 2
+    },
+    {
+        "word": "Fontanería",
+        "value": 2
+    },
+    {
+        "word": "Jardinería",
+        "value": 2
+    },
+    {
+        "word": "Pintor",
+        "value": 2
+    },
+    {
+        "word": "Carga y transporte (mudanza) ",
+        "value": 2
+    },
+    {
+        "word": "Cuidado niños",
+        "value": 2
+    },
+    {
+        "word": "Cuidado personas dependientes y mayores",
+        "value": 2
+    },
+    {
+        "word": "Inglés",
+        "value": 2
+    }
+]

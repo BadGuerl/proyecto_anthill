@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
+const passport = require('passport');
+
 
 
 module.exports.register = (req, res, next) => {
@@ -27,25 +29,25 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.doLogin = (req, res, next) => {
-  User.findOne({ email: req.body.email })
-    .then((user) => {
-      if (user) {
-        user.checkPassword(req.body.password).then((match) => {
-          if (match) {
-            // req.session.currentUserId = user.id;
-            res.redirect('/home');
-          } else {
-            res.render('users/login', { user: req.body, errors: { password: 'Contraseña no valida' } });
-          }
-        });
-      } else {
-        res.render('users/login', { user: req.body, errors: { email: 'Email no valido' } });
-      }
-    })
-    .catch(next);
+  passport.authenticate('local-auth', (error, user, validations) => {
+    if (error) {
+      next(error);
+    } else if (!user) {
+      res.status(400).render('users/login', { user: req.body, errors: validations });
+    } else {
+      req.login(user, error => {
+        if (error) next(error)
+        else res.redirect('/home')
+      })
+    }
+  })(req, res, next);
 };
 
-// module.exports.logout = (req, res, next) => {
-//   req.session.destroy();
-//   res.redirect('/login');
-// };
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.redirect('/login');
+};
+
+module.exports.userProfile = (req, res, next) => {
+  res.render('users/profile');
+};

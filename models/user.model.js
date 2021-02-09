@@ -21,16 +21,20 @@ const userSchema = new Schema({
   nickname: {
     type: String,
     unique: false,
+    default: "nickname"
   },
   bio: {
     type: String,
-    maxlength: 500
+    maxlength: 500,
+    default: "Escribe algo sobre ti"
   },
   phoneNumber: {
     type: Number,
+    default: 00000000
   },
   avatarUrl:{ 
-    type: String, default: 'images/default-avatar.png' 
+    type: String, 
+    default: 'images/default-avatar.png' 
   },
 }, {
   timestamps: true

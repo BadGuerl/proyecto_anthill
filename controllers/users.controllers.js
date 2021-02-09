@@ -51,3 +51,54 @@ module.exports.logout = (req, res, next) => {
 module.exports.userProfile = (req, res, next) => {
   res.render('users/profile');
 };
+
+
+module.exports.updateProfile = (req, res, next) => {
+
+  function renderWithErrors(errors) {
+    Object.assign(req.user, req.body);
+    res.status(400).render('users/profile', {
+      user: req.user,
+      errors: errors,
+    });
+  }
+  const { password, passwordMatch, name, bio, phoneNumber, nickname} = req.body;
+  if (password && password !== passwordMatch) {
+    renderWithErrors({ passwordMatch: 'Passwords do not match' })
+  } else {
+    const updateFields = { name }
+    // if (req.file) {
+    //   updateFields.avatar = req.file.path;
+    // }
+    if (password) {
+      updateFields.password = password;
+    }
+    if (bio)
+    {
+      updateFields.bio = bio;
+    }
+    if (phoneNumber)
+    {
+      updateFields.phoneNumber = phoneNumber;
+    }
+    if (nickname)
+    {
+      updateFields.nickname = nickname;
+    }
+    Object.assign(req.user, updateFields);
+    req.user.save()
+      .then(user => {
+        req.login(user, error => {
+          if (error) next(error)
+          else res.redirect('/profile');
+        });
+      }).catch(error => {
+        if (error instanceof mongoose.Error.ValidationError) {
+          renderWithErrors(error.errors);
+        } else {
+          next(error);
+        }
+      })
+  }
+  
+}

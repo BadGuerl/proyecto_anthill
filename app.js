@@ -52,18 +52,18 @@ app.use(express.urlencoded({ extended: true })); /*Decodificador del body de la 
 const router = require('./config/routes.config');
 app.use('/', router);
 
-// app.use((req, res, next) => {
-//   next(createError(404, 'Page not found'));
-// });
-// app.use((error, req, res, next) => {
-//   console.error(error);
-//   let status = error.status || 500;
+app.use((req, res, next) => {
+  next(createError(404, 'Page not found'));
+});
+app.use((error, req, res, next) => {
+  console.error(error);
+  let status = error.status || 500;
 
-//   res.status(status).render('error', {
-//     message: error.message,
-//     error: req.app.get('env') === 'development' ? error : {},
-//   });
-// });
+  res.status(status).render('error', {
+    message: error.message,
+    error: req.app.get('env') === 'development' ? error : {},
+  });
+});
 
 const port = Number(process.env.PORT || 3000);
 app.listen(port, () => {

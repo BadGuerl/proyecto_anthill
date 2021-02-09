@@ -14,7 +14,7 @@ router.get('/register', usersController.register);
 router.post('/register', usersController.doRegister);
 router.get('/login', usersController.login);
 router.post('/login', usersController.doLogin);
-router.post('/logout', usersController.logout);
+router.post('/logout', secure.isAuthenticated , usersController.logout);
 router.get('/home', secure.isAuthenticated , homeController.vervista);
 router.get('/profile', secure.isAuthenticated , usersController.userProfile);
 router.get('/offers', secure.isAuthenticated , servicesController.offersList);

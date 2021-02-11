@@ -15,7 +15,7 @@ const serviceSchema = new Schema({
         maxlength: 500
     },
     /*ID del usuario que va a realizar el servicio*/
-    idOfferUser: {
+    owner: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
@@ -23,8 +23,8 @@ const serviceSchema = new Schema({
         type: Number,
         required: 'El coste del servicio es obligatorio. Si necesitas ayuda con los precios, visita nuestra tabla de equivalencias'
     },
-    /*IDs de las palabras clave con las que se filtrará*/
-    idKeyWords:[{
+    /*IDs de las palabras clave con las que se filtrará.Fichero de constantes (.js) mejor , con module exports. Y lo cargo en el res.locals */
+    keyWords:[{
         type: Schema.type.ObjectId,
         ref: 'keyWords'
     }]

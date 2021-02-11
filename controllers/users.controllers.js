@@ -9,6 +9,8 @@ module.exports.register = (req, res, next) => {
 };
 
 module.exports.doRegister = (req, res, next) => {
+ //buscamos email antes por si ya existe
+ 
   User.create(req.body)
     .then(user => res.redirect('/home'))
     .catch(error => {

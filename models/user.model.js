@@ -36,6 +36,10 @@ const userSchema = new Schema({
     type: String, 
     default: 'images/default-avatar.png' 
   },
+  coins: {
+    type: Number,
+    default:20
+  }
 }, {
   timestamps: true
 }, );

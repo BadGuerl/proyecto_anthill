@@ -1,16 +1,12 @@
-<nav class="navbar navbar-light bg-light">
+<header class = "padding-navbar">
+<nav class="navbar navbar-light bg-faded">
   <div class="container-fluid height-100px">
     {{#if currentUser }} 
-    <a class="navbar-brand" href="/home">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+        <a class="navbar-brand" href="/home">Home</a>
         <a class="nav-link active" aria-current="page" href="/profile">Tu perfil</a>
         <a class="nav-link active" href="/offers">Servicios</a>
         <a class="nav-link active" href="/board">Tablón de sugerencias</a>
-        <a class="nav-link active" href="/new">Añadir</a>
+        <a class="nav-link active" href="/service/new">Añadir</a>
         <form action="/logout" method="POST">
           <button type="submit" class="btn btn-danger btn-sm">Cerrar Sesión</button>
         </form>
@@ -19,7 +15,8 @@
       <a class="nav-link active" aria-current="page" href="/register">Registrate</a>
       <a class="nav-link active" aria-current="page" href="/login">Iniciar sesión</a>
     {{/if}}
-      </div>
     </div>
   </div>
 </nav>
+
+</header>

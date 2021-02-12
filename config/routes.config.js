@@ -20,7 +20,7 @@ router.get('/profile', secure.isAuthenticated , usersController.userProfile);
 router.post('/profile', secure.isAuthenticated , usersController.updateProfile);
 router.get('/offers', secure.isAuthenticated , servicesController.offersList);
 router.get('/board', secure.isAuthenticated , boardController.boardList);
-router.get('/new', secure.isAuthenticated , servicesController.newOffer);
+router.get('/service/new', secure.isAuthenticated , servicesController.newOffer);
 
 
 

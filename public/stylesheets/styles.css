@@ -5,4 +5,7 @@
 .input-group-text i {
     margin: 0 auto;
   }
-  
+
+.padding-navbar {
+    padding: 1% 10% ; 
+  }

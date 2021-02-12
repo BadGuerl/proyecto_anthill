@@ -104,3 +104,7 @@ module.exports.updateProfile = (req, res, next) => {
   }
   
 }
+
+module.exports.visitOtherProfile = (req, res, next) => {
+  res.render ('users/otherProfile');
+}

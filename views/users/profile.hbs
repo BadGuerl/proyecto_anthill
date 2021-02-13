@@ -5,7 +5,7 @@
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
-            <div class="col-xl-6 col-md-12">
+            <div class="col-md-12">
                 <div class="card user-card-full">
                     <div class="row m-l-0 m-r-0">
                         <div class="col-sm-4 bg-c-lite-green user-profile">
@@ -28,17 +28,29 @@
                                             <input type="text" class="form-control" name="phoneNumber" placeholder="phoneNumber" value="{{ currentUser.phoneNumber }}">
                                         </div>
                                     </div>
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-label" for="form6Example1">Contraseña Nueva</label>
+                                                <input type="password" class="form-control {{isInvalid errors.password }}" name="password" placeholder="Password">
+                                                {{formError errors.password }}
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-label" for="form6Example2">Confirma Contraseña</label>
+                                                <input type="password" class="form-control {{isInvalid errors.passwordMatch }}" name="passwordMatch" placeholder="Repeat Password">
+                                                {{formError errors.passwordMatch }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Bio</h6>
                                     <textarea type="text" class="form-control" name="bio" placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
-                                    <div class="input-group mb-1">
-                                        <input type="password" class="form-control {{isInvalid errors.password }}" name="password" placeholder="Password">
-                                        {{formError errors.password }}
-                                        </div>
-                                        <div class="input-group mb-1">
-                                        <input type="password" class="form-control {{isInvalid errors.passwordMatch }}" name="passwordMatch" placeholder="Repeat Password">
-                                        {{formError errors.passwordMatch }}
-                                    </div>
-                                    <button type="submit">Actualizar perfil</button>
+                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Añade palabras clave para que encuentren tu servicio</h6>
+                                    <textarea type="text" class="form-control" name="bio" placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
+                                     
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">Actualizar perfil</button>
                                 </form>
                             </div>
                         </div>
@@ -48,3 +60,6 @@
         </div>
     </div>
 </div>
+
+
+

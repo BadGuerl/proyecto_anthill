@@ -8,21 +8,20 @@ const servicesController = require('../controllers/services.controllers');
 const boardController = require('../controllers/board.controllers');
 const secure = require('../middlewares/secure.middleware');
 
-
 router.get('/inicio', initController.inicio);
 router.get('/register', usersController.register);
 router.post('/register', usersController.doRegister);
 router.get('/login', usersController.login);
 router.post('/login', usersController.doLogin);
-router.post('/logout', secure.isAuthenticated, usersController.logout);
-router.get('/home', secure.isAuthenticated, homeController.vervista);
-router.get('/profile', secure.isAuthenticated, usersController.userProfile);
-router.post('/profile', secure.isAuthenticated, usersController.updateProfile);
-router.get('/offers', secure.isAuthenticated, servicesController.offersList);
-router.get('/board', secure.isAuthenticated, boardController.boardList);
-router.get('/new', secure.isAuthenticated, servicesController.newOffer);
+
+router.post('/logout', secure.isAuthenticated , usersController.logout);
+router.get('/home', secure.isAuthenticated , homeController.vervista);
+router.get('/profile', secure.isAuthenticated , usersController.userProfile);
+router.post('/profile', secure.isAuthenticated , usersController.updateProfile);
+router.get('/offers', secure.isAuthenticated , servicesController.offersList);
+router.get('/service/new', secure.isAuthenticated , servicesController.newOffer);
+router.post('/service/new', secure.isAuthenticated ,servicesController.addService);
+router.post('/service/:id/delete', secure.isAuthenticated ,servicesController.deleteService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
-
-
 
 module.exports = router;

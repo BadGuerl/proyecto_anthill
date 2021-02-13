@@ -36,7 +36,7 @@ const userSchema = new Schema({
     type: String, 
     default: 'images/default-avatar.png' 
   },
-  ballance: {
+  balance: {
     type: Number,
     default:20
   }

@@ -1,1 +1,66 @@
-new
+<form action="/service/new" method="post">
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form6Example1">Servicio</label>
+                <input type="text" id="form6Example1" class="form-control" name="title" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form6Example2">Precio</label>
+                <input type="text" id="form6Example2" class="form-control" name="antCoins" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form6Example2">¿No sabes qué precio poner?</label>
+                <button type="submit" class="btn btn-primary btn-block mb-4">Equivalencias</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form6Example7">Descripción</label>
+        <textarea type="text" class="form-control" name="description"></textarea>
+    </div>
+    <hr>
+    <div class="form-outline mb-4">
+
+        <label class="form-label" for="form6Example7">Añade palabras clave para que encuentren tu servicio</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="keyWords">
+        <label class="form-check-label" for="inlineCheckbox1">Idiomas</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="keyWords">
+        <label class="form-check-label" for="inlineCheckbox2">Fontanería</label>
+    </div>
+    <hr>
+    <div class="form-outline mb-4">
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <label class="form-label" for="form6Example2">Usuario</label>
+
+                    <input type="text" id="form6Example1" class="form-control" value="{{ currentUser.nickname }}" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <label class="form-label" for="form6Example2">Número de contacto</label>
+                    <input type="text" id="form6Example2" class="form-control" value="{{ currentUser.phoneNumber }}" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <label class="form-label" for="form6Example2">email</label>
+                    <input type="text" id="form6Example2" class="form-control" value="{{ currentUser.email }}" />
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Añadir Servicio</button>
+    </div>
+</form>

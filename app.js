@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
+const mongoose = require('mongoose');
 
 require('./config/hbs.config');
 require('./config/db.config');
@@ -56,7 +57,12 @@ app.use('/', router);
 app.use((req, res, next) => {
   next(createError(404, 'Page not found'));
 });
+
 app.use((error, req, res, next) => {
+  if (error instanceof mongoose.Error.CastError) {
+    error = createError(404, 'Resource not found')
+  }
+
   console.error(error);
   let status = error.status || 500;
 

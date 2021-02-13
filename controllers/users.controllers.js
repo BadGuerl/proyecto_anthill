@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const passport = require('passport');
-
-
+const createError = require('http-errors');
+const Service = require('../models/service.model');
 
 module.exports.register = (req, res, next) => {
   res.render('users/register');
@@ -102,5 +102,24 @@ module.exports.updateProfile = (req, res, next) => {
         }
       })
   }
-  
+}
+
+module.exports.visitOtherProfile = (req, res, next) => {
+  const userId = req.params.id;
+  User.findById(userId)
+    .then(user => {
+      if (user) {
+        Service.find({ owner: userId })
+          .then(services => {
+            res.render('users/otherProfile', {
+              user: user,
+              services: services
+            });
+          })
+          .catch(error => next(error))
+      } else {
+        next(createError(404, 'User not found'))
+      }
+    })
+    .catch(error => next(error))
 }

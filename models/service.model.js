@@ -25,7 +25,7 @@ const serviceSchema = new Schema({
     },
     /*IDs de las palabras clave con las que se filtrará.Fichero de constantes (.js) mejor , con module exports. Y lo cargo en el res.locals */
     keyWords:[{
-        type: Schema.type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'keyWords'
     }]
 });

@@ -21,3 +21,11 @@ hbs.registerHelper('formError', (error) => {
 hbs.registerHelper('limitChars', (maxChars, options) => {
   return options.fn().slice(0, maxChars) + '...';
 })
+
+hbs.registerHelper('itsMe', (userId, userOfferId, options) => {
+  if (userOfferId && userId == userOfferId) { /* objeto == string */
+    return options.fn() /*Ejecuta lo q está dentro del itsme*/ ;
+  } else {
+    return options.inverse();
+  }
+});

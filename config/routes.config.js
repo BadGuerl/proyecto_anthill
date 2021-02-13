@@ -21,7 +21,8 @@ router.post('/profile', secure.isAuthenticated, usersController.updateProfile);
 router.get('/offers', secure.isAuthenticated, servicesController.offersList);
 router.get('/board', secure.isAuthenticated, boardController.boardList);
 router.get('/new', secure.isAuthenticated, servicesController.newOffer);
-router.get('/otherProfile', secure.isAuthenticated, usersController.visitOtherProfile);
+router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
+
 
 
 module.exports = router;

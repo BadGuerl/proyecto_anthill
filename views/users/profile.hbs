@@ -8,15 +8,15 @@
             <div class="col-md-12">
                 <div class="card user-card-full">
                     <div class="row m-l-0 m-r-0">
-                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                        <div class="col-sm-4 bg-info user-profile">
                             <div class="card-block text-center text-white">
-                                <div class="m-b-25"> <img src="{{ currentUser.avatarUrl }}" class="img-radius" alt="User-Profile-Image"> </div>
+                                <div class="m-b-25"><img src="{{ currentUser.avatarUrl }}" class="img-radius" alt="Imagen del perfil de usuario"> </div>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="card-block">
                                 <form action="/profile" method="post">
-                                    <h5 class="m-b-20 p-b-5 b-b-default f-w-600">Hola {{ currentUser.nickname }}</h5>
+                                    <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-info ">Hola {{ currentUser.nickname }}</h4>
                                     <input type="text" class="form-control" name="nickname" placeholder="nickname" value="{{ currentUser.nickname }}">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -50,7 +50,7 @@
                                     <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Añade palabras clave para que encuentren tu servicio</h6>
                                     <textarea type="text" class="form-control" name="bio" placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
                                      
-                                    <button type="submit" class="btn btn-primary btn-block mb-4">Actualizar perfil</button>
+                                    <button type="submit" class="btn btn-warning text-white btn-block mt-3">Actualizar perfil</button>
                                 </form>
                             </div>
                         </div>

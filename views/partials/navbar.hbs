@@ -1,18 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent p-2">
   <div class="container-fluid height-100px justify-content-around">
     {{#if currentUser }} 
-    <a class="navbar-brand" href="/home">Home</a>
+    <a class="navbar-brand text-warning" href="/home">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav w-100 align-items-center">
-        <a class="nav-link active mx-2" aria-current="page" href="/profile">Tu perfil</a>
-        <a class="nav-link active mx-2" href="/offers">Servicios</a>
-        <a class="nav-link active mx-2" href="/board">Tablón de sugerencias</a>
-        <a class="nav-link active mx-2" href="/service/new">Añadir</a>
+        <a class="nav-link active mx-2 text-info" aria-current="page" href="/profile">Tu perfil</a>
+        <a class="nav-link active mx-2 text-info" href="/offers">Servicios</a>
+        <a class="nav-link active mx-2 text-info" href="/board">Tablón de sugerencias</a>
+        <a class="nav-link active mx-2 text-info" href="/service/new">Añadir</a>
         <form action="/logout" method="POST" class="ms-auto">
-          <button type="submit" class="btn btn-warning btn-sm">Cerrar Sesión</button>
+          <button type="submit" class="btn btn-warning text-white btn-sm">Cerrar Sesión</button>
         </form>
      {{else}} 
       <a class="nav-link active text-info" aria-current="page" href="/inicio">Inicio</a>

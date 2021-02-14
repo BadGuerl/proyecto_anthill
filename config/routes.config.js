@@ -7,6 +7,7 @@ const usersController = require('../controllers/users.controllers');
 const servicesController = require('../controllers/services.controllers');
 const boardController = require('../controllers/board.controllers');
 const secure = require('../middlewares/secure.middleware');
+const dealController = require('../controllers/deal.controllers')
 
 router.get('/inicio', initController.inicio);
 router.get('/register', usersController.register);
@@ -19,10 +20,10 @@ router.get('/home', secure.isAuthenticated, homeController.vervista);
 router.get('/profile', secure.isAuthenticated, usersController.userProfile);
 router.post('/profile', secure.isAuthenticated, usersController.updateProfile);
 router.get('/offers', secure.isAuthenticated, servicesController.offersList);
-router.get('/services/new', secure.isAuthenticated, servicesController.newOffer);
-router.post('/services/new', secure.isAuthenticated, servicesController.addService);
-router.post('/services/:id/delete', secure.isAuthenticated, servicesController.deleteService);
+router.get('/service/new', secure.isAuthenticated, servicesController.newOffer);
+router.post('/service/new', secure.isAuthenticated, servicesController.addService);
+router.post('/service/:id/delete', secure.isAuthenticated, servicesController.deleteService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
-router.get('/services/deal', secure.isAuthenticated, usersController.dealer);
+router.get('/deal', secure.isAuthenticated, dealController.dealer);
 
 module.exports = router;

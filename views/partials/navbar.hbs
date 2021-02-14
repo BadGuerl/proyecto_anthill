@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
   <div class="container-fluid height-100px">
     {{#if currentUser }} 
     <a class="navbar-brand" href="/home">Home</a>
@@ -12,12 +12,12 @@
         <a class="nav-link active mx-2" href="/board">Tablón de sugerencias</a>
         <a class="nav-link active mx-2" href="/service/new">Añadir</a>
         <form action="/logout" method="POST" class="ms-auto">
-          <button type="submit" class="btn btn-danger btn-sm">Cerrar Sesión</button>
+          <button type="submit" class="btn btn-warning btn-sm">Cerrar Sesión</button>
         </form>
      {{else}} 
-      <a class="nav-link active" aria-current="page" href="/inicio">Inicio</a>
-      <a class="nav-link active" aria-current="page" href="/register">Registrate</a>
-      <a class="nav-link active" aria-current="page" href="/login">Iniciar sesión</a>
+      <a class="nav-link active  text-info" aria-current="page" href="/inicio">Inicio</a>
+      <a class="nav-link active  text-info" aria-current="page" href="/register">Registrate</a>
+      <a class="nav-link active  text-info" aria-current="page" href="/login">Iniciar sesión</a>
     {{/if}}
     </div>
   </div>

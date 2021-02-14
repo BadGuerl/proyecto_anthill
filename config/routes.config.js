@@ -14,14 +14,15 @@ router.post('/register', usersController.doRegister);
 router.get('/login', usersController.login);
 router.post('/login', usersController.doLogin);
 
-router.post('/logout', secure.isAuthenticated , usersController.logout);
-router.get('/home', secure.isAuthenticated , homeController.vervista);
-router.get('/profile', secure.isAuthenticated , usersController.userProfile);
-router.post('/profile', secure.isAuthenticated , usersController.updateProfile);
-router.get('/offers', secure.isAuthenticated , servicesController.offersList);
-router.get('/service/new', secure.isAuthenticated , servicesController.newOffer);
-router.post('/service/new', secure.isAuthenticated ,servicesController.addService);
-router.post('/service/:id/delete', secure.isAuthenticated ,servicesController.deleteService);
+router.post('/logout', secure.isAuthenticated, usersController.logout);
+router.get('/home', secure.isAuthenticated, homeController.vervista);
+router.get('/profile', secure.isAuthenticated, usersController.userProfile);
+router.post('/profile', secure.isAuthenticated, usersController.updateProfile);
+router.get('/offers', secure.isAuthenticated, servicesController.offersList);
+router.get('/services/new', secure.isAuthenticated, servicesController.newOffer);
+router.post('/services/new', secure.isAuthenticated, servicesController.addService);
+router.post('/services/:id/delete', secure.isAuthenticated, servicesController.deleteService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
+router.get('/services/deal', secure.isAuthenticated, usersController.dealer);
 
 module.exports = router;

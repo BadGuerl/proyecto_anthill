@@ -26,16 +26,16 @@
                                     <hr>
                                     <div class="float-right">
                                         {{#itsMe ../currentUser.id service.owner }}
-                                        <a class="btn btn-sm btn-outline-primary" href="/service/{{service.id}}/delete"><i class="icofont-headphone-alt"></i> Borrar </a>
+                                        <a class="btn btn-sm btn-outline-primary" href="/service/{{service.id}}/delete"><i class="icofont-headphone-alt"></i>Borrar</a>
                                         {{else}}
                                         <a class="btn btn-sm btn-outline-primary"
-                                            href="/users/{{service.owner}}"><i class=" icofont-headphone-alt"></i> Ver Perfil</a>
+                                            href="/users/{{service.owner}}"><i class=" icofont-headphone-alt"></i>Ver Perfil</a>
                                         <a class="btn btn-sm btn-primary" href="#"><i
-                                                class="icofont-refresh"></i>Requerir</a>
+                                                class="icofont-refresh"></i>Ir al trato</a>
                                         {{/itsMe}}
                                     </div>
                                     <p class="mb-0 text-black text-primary pt-2"><span
-                                            class="text-black font-weight-bold"> Precio:</span> {{ service.antCoins }}
+                                            class="text-black font-weight-bold">Precio:</span> {{ service.antCoins }}
                                         AntCoins
                                     </p>
                                 </div>

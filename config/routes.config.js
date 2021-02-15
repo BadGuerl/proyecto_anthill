@@ -21,7 +21,7 @@ router.post('/profile', secure.isAuthenticated , usersController.updateProfile);
 router.get('/offers', secure.isAuthenticated , servicesController.offersList);
 router.get('/service/new', secure.isAuthenticated , servicesController.newOffer);
 router.post('/service/new', secure.isAuthenticated ,servicesController.addService);
-router.post('/service/:id/delete', secure.isAuthenticated ,servicesController.deleteService);
+router.get('/service/:id/delete', secure.isAuthenticated ,servicesController.deleteService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
 
 module.exports = router;

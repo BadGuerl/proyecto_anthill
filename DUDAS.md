@@ -7,3 +7,4 @@ ANTCOINS PONER. LE RECOMENDAMOS QUE VISITE LA PÁGINA DE EQUIVALENCIAS. PERO SI 
 cambiar url /new --> /offer/new
 meter en el perfil TU PERFIL tambien palabras clave
 
+3. DUDA Delete services: se puede optimizar el código más? hago dos accesos a la BBDD

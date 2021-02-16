@@ -3,6 +3,7 @@ const User = require('../models/user.model');
 const passport = require('passport');
 const createError = require('http-errors');
 const Service = require('../models/service.model');
+const Deal = require('../models/deal.model');
 
 module.exports.register = (req, res, next) => {
   res.render('users/register');
@@ -123,3 +124,4 @@ module.exports.visitOtherProfile = (req, res, next) => {
     })
     .catch(error => next(error))
 }
+

@@ -12,7 +12,7 @@
                         <h2 class="font-weight-bold fw-normal text-warning p-3 pb-3">Servicios</h2>
                     </div>
                     {{#each services as |service| }}
-                    <form action="/{{ service.id }}/dealer" method="post">
+                    <form action="/service/{{ service.id }}/deals" method="post">
                         <div class="bg-white card mb-4 order-list shadow-sm">
                             <div class="gold-members p-4">
                                 <img class="float-end mr-4 ml-4" src="https://bootdey.com/img/Content/avatar/avatar2.png"
@@ -32,7 +32,7 @@
                                             <a class="btn btn-sm btn-outline-info" href="/service/{{service.id}}/delete"><i class="icofont-headphone-alt"></i>Borrar</a>
                                             {{else}}
                                             <a class="btn btn-sm btn-outline-warning"
-                                                href="/users/{{service.owner}}"><i class=" icofont-headphone-alt"></i>Ver Perfil</a>
+                                                href="/users/{{service.owner}}"><i class="icofont-headphone-alt"></i>Ver Perfil</a>
                                             <button type="submit" class="btn btn-sm btn-warning text-white"><i class="icofont-refresh"></i>Solicitar</button>
                                             
                                             {{/itsMe}}

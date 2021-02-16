@@ -24,8 +24,9 @@ router.get('/service/new', secure.isAuthenticated, servicesController.newOffer);
 router.post('/service/new', secure.isAuthenticated, servicesController.addService);
 router.post('/service/:id/delete', secure.isAuthenticated, servicesController.deleteService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
-router.get('/service/:servideId', secure.isAuthenticated, dealController.deals);
-router.post('/services/:serviceId/deals', secure.isAuthenticated, dealController.newDeal);
-router.post('/services/:serviceId/deals/:id', secure.isAuthenticated, dealController.updateDeal);
+// router.get('/service/:servideId', secure.isAuthenticated, dealController.deals);
+router.post('/service/:serviceId/deals', secure.isAuthenticated, dealController.newDeal);
+// router.get('/service/:serviceId/:id', secure.isAuthenticated, dealController.createDeal);
+// router.post('/service/:serviceId/deals/:id', secure.isAuthenticated, dealController.updateDeal);
 
 module.exports = router;

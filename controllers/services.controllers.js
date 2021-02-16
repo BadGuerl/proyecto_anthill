@@ -10,6 +10,7 @@ module.exports.offersList = (req, res, next) => {
 module.exports.newOffer = (req, res, next) => {
     res.render ('services/new');
 }
+
 module.exports.addService = (req, res, next) => {   
     // req.body.owner = res.locals.currentUser.id;
     const newService = {
@@ -35,7 +36,7 @@ module.exports.addService = (req, res, next) => {
 module.exports.deleteService = (req, res, next) => {
   console.log(req.body.owner)
   console.log(res.locals.currentUser.id)
-  if ( req.body.owner == res.locals.currentUser.id ){
+  if (req.body.owner == res.locals.currentUser.id) {
     Service.findByIdAndDelete(req.params.id)
     .then((service) => {
       if (service) {

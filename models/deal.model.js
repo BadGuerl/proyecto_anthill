@@ -18,7 +18,7 @@ const dealSchema = new Schema({
     /*Este ID yo creo que sobra, porque dentro de Service tenemos al usuario que oferta*/
     serviceOwner:  {
         type: Schema.Types.ObjectId,
-        ref: 'Owner'
+        ref: 'User'
     },
     /*ID del usuario solicitante del servicio*/
     interestedUser:  {

@@ -1,0 +1,18 @@
+
+[
+    {
+      "estado": "Pendiente",
+      "idService": "6029307142c15f16bf85e6b8",
+      "idOfferUser": "6029307142c15f16bf85e6b6",
+      "idApplicant": "602930d9a1e58d15b79028fb",
+      "antCoins": 2
+    },
+    {
+      "estado": "Realizado",
+      "idService": "602932531b363917184d475e",
+      "idOfferUser": "602930d9a1e58d15b79028fb",
+      "idApplicant": "",
+      "antCoins": 3
+    }
+]
+  

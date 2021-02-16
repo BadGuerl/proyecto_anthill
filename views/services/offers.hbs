@@ -12,35 +12,39 @@
                         <h2 class="font-weight-bold fw-normal text-warning p-3 pb-3">Servicios</h2>
                     </div>
                     {{#each services as |service| }}
-                    <div class="bg-white card mb-4 order-list shadow-sm">
-                        <div class="gold-members p-4">
-                            <img class="float-end mr-4 ml-4" src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                    alt="Imagen del usuario">
-                            <h5 class="mb-2 text-info">{{ service.title }}</h5>
-                            <div class="media">
-                
-                                <div class="media-body">
-                                    <span class="float-right">Usuario<i class="icofont-check-circled
-                                            text-success">
-                                            </i></span>
-                                    <p class="text-secondary mb-1"><i class="icofont-location-arrow"></i> {{ service.description }}</p>
-                                    <hr>
-                                    <div class="float-end">
-                                        {{#itsMe ../currentUser.id service.owner }}
-                                        <a class="btn btn-sm btn-outline-info" href="/service/{{service.id}}/delete"><i class="icofont-headphone-alt"></i>Borrar</a>
-                                        {{else}}
-                                        <a class="btn btn-sm btn-outline-warning"
-                                            href="/users/{{service.owner}}"><i class=" icofont-headphone-alt"></i>Ver Perfil</a>
-                                        <a class="btn btn-sm btn-warning text-white" href="/deal"><i class="icofont-refresh"></i>Ir al trato</a>
-                                        {{/itsMe}}
+                    <form action="/{{ service.id }}/dealer" method="post">
+                        <div class="bg-white card mb-4 order-list shadow-sm">
+                            <div class="gold-members p-4">
+                                <img class="float-end mr-4 ml-4" src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                        alt="Imagen del usuario">
+                                <h5 class="mb-2 text-info">{{ service.title }}</h5>
+                                <div class="media">
+                    
+                                    <div class="media-body">
+                                        <span class="float-right">Usuario<i class="icofont-check-circled
+                                                text-success">
+                                                </i></span>
+                                        <p class="text-secondary mb-1"><i class="icofont-location-arrow"></i> {{ service.description }}</p>
+                                        <hr>
+                                        <div class="float-end">
+                                            {{#itsMe ../currentUser.id service.owner }}
+                                            
+                                            <a class="btn btn-sm btn-outline-info" href="/service/{{service.id}}/delete"><i class="icofont-headphone-alt"></i>Borrar</a>
+                                            {{else}}
+                                            <a class="btn btn-sm btn-outline-warning"
+                                                href="/users/{{service.owner}}"><i class=" icofont-headphone-alt"></i>Ver Perfil</a>
+                                            <button type="submit" class="btn btn-sm btn-warning text-white"><i class="icofont-refresh"></i>Solicitar</button>
+                                            
+                                            {{/itsMe}}
+                                        </div>
+                                        <p class="mb-0 text-black text-warning pt-2 fw-bo"><span class="text-black font-weight-bold">Precio:</span> {{ service.antCoins }}
+                                            AntCoins
+                                        </p>
                                     </div>
-                                    <p class="mb-0 text-black text-warning pt-2 fw-bo"><span class="text-black font-weight-bold">Precio:</span> {{ service.antCoins }}
-                                        AntCoins
-                                    </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     {{/each}}
                 </div>
                 <hr>

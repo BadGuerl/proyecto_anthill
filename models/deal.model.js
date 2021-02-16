@@ -4,27 +4,30 @@ require('../models/service.model');
 require('../models/user.model');
 
 
-
 const dealSchema = new Schema({
-    estado: {
+    status: {
       type: String,
       enum: ['Pendiente', 'Realizado' , 'Cancelado'],
     },
     /*ID del servicio que se ha contratado*/
-    idService:  {
+    service:  {
        type: Schema.Types.ObjectId,
        ref: 'Service'
     },
     /*ID del usuario que va a realizar el servicio*/
     /*Este ID yo creo que sobra, porque dentro de Service tenemos al usuario que oferta*/
-    idOfferUser:  {
+    serviceOwner:  {
+        type: Schema.Types.ObjectId,
+        ref: 'Owner'
+    },
+    /*ID del usuario solicitante del servicio*/
+    interestedUser:  {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    /*ID del usuario solicitante del servicio*/
-    idApplicant:  {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+    antCoins: {
+      type: Number,
+      required: true
     }
   });
   

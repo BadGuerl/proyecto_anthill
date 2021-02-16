@@ -1,7 +1,7 @@
 <form method="POST" action="/login" class="col-lg-6 col-md-8 mx-auto">
   <img src="images/logo.png" class="img-thumbnail bg-transparent border-0 mb-4" alt="logo image">
-  <h1 class="fw-normal text-warning">Inicia sesión</h1>
-  <div class="mb-4">
+  <h1 class="fw-normal text-warning mb-4">Inicia sesión</h1>
+  <div class="mb-3">
     <label class="form-label">Email de usuario</label>
     <input name="email" value="{{ user.email }}" type="email" class="form-control {{#if errors.email }}is-invalid{{/if}}" aria-describedby="emailHelp">
     {{#if errors.email }}<div class="invalid-feedback">{{ errors.email }}</div>{{/if}}

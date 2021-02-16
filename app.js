@@ -11,6 +11,7 @@ require('./config/hbs.config');
 require('./config/db.config');
 const session = require('./config/session.config');
 require('./config/passport.config');
+require('./config/routes.config');
 
 const app = express();
 

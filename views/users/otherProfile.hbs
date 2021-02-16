@@ -37,17 +37,19 @@
               <div class="row gutters-sm">
                 <div class="row">
                   {{#each services as | service | }}
-                    <div class="col-12">
-                      <div class="card" style="width: 18rem;">
-                          <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-img-top" alt="service image">
-                          <div class="card-body">
-                            <h5 class="card-title">{{ service.title }}</h5>
-                            <p class="card-text">{{ service.description }}</p>
-                            <h5 class="card-title">{{ service.antCoins }} Antcoins</h5>
-                            <a href="#" class="btn btn-primary center">Contratar</a>
+                    <form action="/service/{{ service.id }}/dealer" method="post">
+                      <div class="col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-img-top" alt="service image">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ service.title }}</h5>
+                              <p class="card-text">{{ service.description }}</p>
+                              <h5 class="card-title">{{ service.antCoins }} Antcoins</h5>
+                              <button type="submit" class="btn btn-warning text-white center">Ir al trato</button>
+                            </div>
                           </div>
-                        </div>
-                    </div>
+                      </div>
+                    </form>
                   {{/each }}
                 </div>
               </div>

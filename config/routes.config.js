@@ -7,7 +7,7 @@ const usersController = require('../controllers/users.controllers');
 const servicesController = require('../controllers/services.controllers');
 const boardController = require('../controllers/board.controllers');
 const secure = require('../middlewares/secure.middleware');
-const dealController = require('../controllers/deal.controllers')
+const dealController = require('../controllers/deals.controllers')
 
 router.get('/inicio', initController.inicio);
 router.get('/register', usersController.register);
@@ -24,6 +24,8 @@ router.get('/service/new', secure.isAuthenticated, servicesController.newOffer);
 router.post('/service/new', secure.isAuthenticated, servicesController.addService);
 router.post('/service/:id/delete', secure.isAuthenticated, servicesController.deleteService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
-router.get('/deal', secure.isAuthenticated, dealController.dealer);
+router.get('/service/:servideId', secure.isAuthenticated, dealController.deals);
+router.post('/services/:serviceId/deals', secure.isAuthenticated, dealController.newDeal);
+router.post('/services/:serviceId/deals/:id', secure.isAuthenticated, dealController.updateDeal);
 
 module.exports = router;

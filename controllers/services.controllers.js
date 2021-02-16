@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Service = require ('../models/service.model');
+
 module.exports.offersList = (req, res, next) => {
     Service.find()
     .then((services) => res.render('services/offers', { services })) /*ruta en el árbol del proyecto*/ 

@@ -15,5 +15,6 @@ const keyWordsSchema = new Schema({
         enum: [1,2,3]
     }
   });
+  
 const keyWords = mongoose.model('keyWords', keyWordsSchema);
 module.exports = keyWords;

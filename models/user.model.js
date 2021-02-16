@@ -40,7 +40,7 @@ const userSchema = new Schema({
     type: Number,
     default:20
   }
-}, {
+},{
   timestamps: true
 }, );
 

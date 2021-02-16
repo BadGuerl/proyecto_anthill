@@ -37,18 +37,34 @@ module.exports.addService = (req, res, next) => {
     });
 };
 module.exports.deleteService = (req, res, next) => {
-  console.log(req.params.id)
-  console.log(res.locals.currentUser.id)
+
   Service.findById(req.params.id) /* req.params -->request que viene en el path de la url (req.query sería en la url despues de '?' y req.body , va en el cuerpo*/
     .then((service) => {
-      if (service && service.owner ==  res.locals.currentUser.id) {
+      if (service && service.owner == res.locals.currentUser.id) {
         Service.findByIdAndDelete(req.params.id)
-        .then((service) => {
-          if(service) { res.redirect('/offers'); }
-        });
+          .then((service) => {
+            if (service) {
+              res.redirect('/offers');
+            }
+          });
       } else {
         next(createError(404, 'Service does not exists'));
       }
     })
     .catch(next);
 };
+
+module.exports.searchService = (req, res, next) => {
+  const keyWord = req.body.keyWord;
+  const keyRE = new RegExp(keyWord); /*Creamos expresion regular: "/palabra/"*/
+  console.log(keyWord);
+  console.log(keyRE);
+  Service.find({
+      title: keyRE
+    })
+    .then((services) => {  /* se tiene que llamar igual que en la variable de hbs */
+      console.log(services);
+      res.render('services/offers', { services } )   
+    })
+    .catch(next);
+}

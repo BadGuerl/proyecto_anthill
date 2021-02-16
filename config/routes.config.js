@@ -5,7 +5,6 @@ const initController = require('../controllers/init.controllers');
 const homeController = require('../controllers/home.controllers');
 const usersController = require('../controllers/users.controllers');
 const servicesController = require('../controllers/services.controllers');
-const boardController = require('../controllers/board.controllers');
 const secure = require('../middlewares/secure.middleware');
 
 router.get('/inicio', initController.inicio);
@@ -23,5 +22,7 @@ router.get('/service/new', secure.isAuthenticated , servicesController.newOffer)
 router.post('/service/new', secure.isAuthenticated ,servicesController.addService);
 router.get('/service/:id/delete', secure.isAuthenticated ,servicesController.deleteService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
+router.post('/offers/filter', secure.isAuthenticated ,servicesController.searchService);
+
 
 module.exports = router;

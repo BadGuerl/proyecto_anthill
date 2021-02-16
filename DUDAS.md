@@ -8,3 +8,8 @@ cambiar url /new --> /offer/new
 meter en el perfil TU PERFIL tambien palabras clave
 
 3. DUDA Delete services: se puede optimizar el código más? hago dos accesos a la BBDD
+
+CUANDO USAR RES.RENDER Y CUANDO RES.REDIRECT
+res.render --> renderiza algo que hemos estado tratando
+res.redirect --> va a routes config a mirar la ruta que le has pasado y ejecuta ese endpoint
+

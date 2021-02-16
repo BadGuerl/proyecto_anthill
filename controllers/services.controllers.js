@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
-const Service = require ('../models/service.model');
+const Service = require('../models/service.model');
 
 module.exports.offersList = (req, res, next) => {
-    Service.find()
-    .then((services) => res.render('services/offers', { services })) /*ruta en el árbol del proyecto*/ 
+  Service.find()
+    .then((services) => res.render('services/offers', {
+      services
+    })) /*ruta en el árbol del proyecto*/
     .catch(next);
 }
 
 module.exports.newOffer = (req, res, next) => {
-    res.render ('services/new');
+  res.render('services/new');
 }
-
 module.exports.addService = (req, res, next) => {   
     // req.body.owner = res.locals.currentUser.id;
     const newService = {
@@ -32,20 +33,34 @@ module.exports.addService = (req, res, next) => {
          }
        });
 };
-
 module.exports.deleteService = (req, res, next) => {
-  console.log(req.body.owner)
-  console.log(res.locals.currentUser.id)
-  if (req.body.owner == res.locals.currentUser.id) {
-    Service.findByIdAndDelete(req.params.id)
+  Service.findById(req.params.id) /* req.params -->request que viene en el path de la url (req.query sería en la url despues de '?' y req.body , va en el cuerpo*/
     .then((service) => {
-      if (service) {
-        res.redirect('/offers');
+      if (service && service.owner == res.locals.currentUser.id) {
+        Service.findByIdAndDelete(req.params.id)
+          .then((service) => {
+            if (service) {
+              res.redirect('/offers');
+            }
+          });
       } else {
         next(createError(404, 'Service does not exists'));
       }
     })
     .catch(next);
-  }
 };
 
+module.exports.searchService = (req, res, next) => {
+  const keyWord = req.body.keyWord;
+  const keyRE = new RegExp(keyWord); /*Creamos expresion regular: "/palabra/"*/
+  console.log(keyWord);
+  console.log(keyRE);
+  Service.find({
+      title: keyRE
+    })
+    .then((services) => {  /* se tiene que llamar igual que en la variable de hbs */
+      console.log(services);
+      res.render('services/offers', { services } )   
+    })
+    .catch(next);
+}

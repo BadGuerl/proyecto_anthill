@@ -1,4 +1,9 @@
-<form action="/service/new" method="post">
+
+<form action="/service/new" method="post" class="col-md-8 mx-auto">
+    <div class="d-flex justify-content-start align-items-center pb-5">
+        <img src="../images/logo.png" alt="logo Anthill" class="float-start md-2 pb-2">
+        <h2 class="font-weight-bold fw-normal text-warning p-3 pb-3">Añadir servicio</h2>
+    </div>
     <div class="row mb-4">
         <div class="col">
             <div class="form-outline">
@@ -15,7 +20,7 @@
         <div class="col">
             <div class="form-outline">
                 <label class="form-label" for="form6Example2">¿No sabes qué precio poner?</label>
-                <button type="submit" class="btn btn-primary btn-block mb-4">Equivalencias</button>
+                <button type="submit" class="btn btn-info text-white btn-block mb-4 ">Equivalencias</button>
 
             </div>
         </div>
@@ -44,7 +49,6 @@
             <div class="col">
                 <div class="form-outline">
                     <label class="form-label" for="form6Example2">Usuario</label>
-
                     <input type="text" id="form6Example1" class="form-control" value="{{ currentUser.nickname }}" />
                 </div>
             </div>
@@ -61,6 +65,6 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mb-4">Añadir Servicio</button>
+        <button type="submit" class="btn btn-warning text-white btn-block mb-4">Añadir Servicio</button>
     </div>
 </form>

@@ -14,7 +14,7 @@ body{
 .card {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;

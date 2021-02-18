@@ -9,7 +9,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                     <div class="d-flex justify-content-start align-items-center">
-                        <img src="images/logo.png" alt="logo Anthill" class="float-start md-2 pb-2">
+                        <img src="{{ user.avatarUrl }}" alt="logo Anthill" class="float-start md-2 pb-2">
                         <h2 class="font-weight-bold fw-normal text-warning p-3 pb-3">Servicios</h2>
                     </div>
                     <div>
@@ -29,7 +29,7 @@
                                 
                                 <div class="media-body">
                                     <span class="float-right text-info">Usuario<i class="icofont-check-circled
-                                            text-success">
+                                            text-info">
                                             </i></span>
                                         <p class="text-secondary mb-1"><i class="icofont-location-arrow"></i> {{ service.description }}</p>
                                         <hr>
@@ -37,12 +37,12 @@
                                         {{#itsMe ../currentUser.id service.owner }}
                                         <a class="btn btn-sm btn-outline-info" href="/service/{{service.id}}/delete"><i class="icofont-headphone-alt"></i>Borrar</a>
                                         {{else}}
-                                        <a class="btn btn-sm btn-outline-primary" href="/users/{{service.owner}}"><i
-                                                class=" icofont-headphone-alt"></i> Ver Perfil</a>
-                                       <button type="submit" class="btn btn-sm btn-warning text-white"><i class="icofont-refresh"></i>Solicitar</button>
+                                        <a class="btn btn-sm btn-outline-info" href="/users/{{service.owner}}"><i
+                                                class=" icofont-headphone-alt"></i>Ver Perfil</a>
+                                       <button type="submit" class="btn btn-sm btn-info text-white"><i class="icofont-refresh"></i>Solicitar</button>
                                         {{/itsMe}}      
                                         </div>
-                                        <p class="mb-0 text-black text-warning pt-2 fw-bo"><span class="text-black font-weight-bold">Precio:</span> {{ service.antCoins }}
+                                        <p class="mb-0 text-black text-info pt-2 fw-bo"><span class="text-black font-weight-bold">Precio:</span> {{ service.antCoins }}
                                             AntCoins
                                         </p>
                                     </div>
@@ -54,7 +54,7 @@
                 </div>
                 <hr>
                 <div class="col-12 d-flex justify-content-between align-items-center">
-                    <a class="btn btn-info text-white" href="/service/new">Añadir nuevo servicio</a>
+                    <a class="btn btn-warning text-white" href="/service/new">Añadir nuevo servicio</a>
                 </div>
             </div>
         </div>

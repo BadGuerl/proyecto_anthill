@@ -52,9 +52,18 @@ module.exports.logout = (req, res, next) => {
 };
 
 module.exports.userProfile = (req, res, next) => {
-  res.render('users/profile');
+  // res.render('users/profile');
+  Deal.find({ interestedUser: res.locals.currentUser.id })
+  .then(deals => {
+    Service.find( { _id: { $in: deals } }
+      .then(services => {
+        res.render('users/profile', {
+          deals: services
+        })
+      } ) )}
+    )
+  .catch(error => next(error))
 };
-
 
 module.exports.updateProfile = (req, res, next) => {
 
@@ -117,7 +126,7 @@ module.exports.visitOtherProfile = (req, res, next) => {
               services: services
             });
           })
-          .catch(error => next(error))
+          .catch(error => next(error))          
       } else {
         next(createError(404, 'User not found'))
       }

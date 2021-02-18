@@ -12,6 +12,7 @@ module.exports.offersList = (req, res, next) => {
 module.exports.newOffer = (req, res, next) => {
   res.render('services/new');
 }
+
 module.exports.addService = (req, res, next) => {   
     // req.body.owner = res.locals.currentUser.id;
     const newService = {
@@ -33,6 +34,7 @@ module.exports.addService = (req, res, next) => {
          }
        });
 };
+
 module.exports.deleteService = (req, res, next) => {
   Service.findById(req.params.id) /* req.params -->request que viene en el path de la url (req.query sería en la url despues de '?' y req.body , va en el cuerpo*/
     .then((service) => {

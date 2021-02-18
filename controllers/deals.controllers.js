@@ -31,12 +31,23 @@ module.exports.newDeal = (req, res, next) => {
         .catch(error => next(error))
 }
 
-// module.exports.closeDeal = (req, res, next) => {
+module.exports.dealList = (req, res, next) => {
+    Deal.find()
+        .then((deals) => res.render('services/deal', {
+            deals
+        })) /*ruta en el árbol del proyecto*/
+        .catch(next);
+  }
 
-//     Deal.findById(req.params.dealId)
-//         .then((deal => {
-//             if (status) {// si el owner acepta el deal, el status cambia a 'realizado', y si no a 'cancelado'
-              
-//         })
-//         .catch(error => next(error))
-//   }
+module.exports.acceptDeal = (req, res, next) => {
+    Deal.findById(req.params.dealId)
+        .then((newDeal) => {
+            if (model.status(/*pendiente*/)) {
+
+            } else {
+
+            }
+        })
+        .catch(error => next(error))
+        console.log(dealList)
+}

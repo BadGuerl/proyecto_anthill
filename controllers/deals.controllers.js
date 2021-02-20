@@ -19,7 +19,7 @@ module.exports.newDeal = (req, res, next) => {
                     interestedUser: req.user.id,
                     antCoins: service.antCoins
                 })
-                .then(deal => res.redirect('/profile'))
+                .then(deal => res.render('users/profile'))
                 .catch(createError(403, 'No se ha podido crear el trato'))
                 } else {
                     next(createError(403, 'No tienes suficientes Antcoins'))// TODO mostrar un alert de que no tiene monedas
@@ -29,25 +29,4 @@ module.exports.newDeal = (req, res, next) => {
             }
         })
         .catch(error => next(error))
-}
-
-module.exports.dealList = (req, res, next) => {
-    Deal.find()
-        .then((deals) => res.render('services/deal', {
-            deals
-        })) /*ruta en el árbol del proyecto*/
-        .catch(next);
-  }
-
-module.exports.acceptDeal = (req, res, next) => {
-    Deal.findById(req.params.dealId)
-        .then((newDeal) => {
-            if (model.status(/*pendiente*/)) {
-
-            } else {
-
-            }
-        })
-        .catch(error => next(error))
-        console.log(dealList)
 }

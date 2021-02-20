@@ -52,15 +52,16 @@ module.exports.logout = (req, res, next) => {
 };
 
 module.exports.userProfile = (req, res, next) => {
-  // res.render('users/profile');
-  Deal.find({ interestedUser: res.locals.currentUser.id })
+ 
+  Deal.find({$or: [{interestedUser: res.locals.currentUser.id}, {serviceOwner: res.locals.currentUser.id}]  })
+  .populate('service')
+  .populate('serviceOwner')
+  .populate('interestedUser')
   .then(deals => {
-    Service.find( { _id: { $in: deals } }
-      .then(services => {
         res.render('users/profile', {
-          deals: services
+          deals
         })
-      } ) )}
+      } 
     )
   .catch(error => next(error))
 };
@@ -134,3 +135,15 @@ module.exports.visitOtherProfile = (req, res, next) => {
     .catch(error => next(error))
 }
 
+module.exports.acceptDeal = (req, res, next) => {
+    Deal.findById(req.params.dealId)
+        .then((newDeal) => {
+            if (model.status === 'Pendiente') {
+              
+            } else {
+
+            }
+        })
+        .catch(error => next(error))
+        console.log(dealList)
+}

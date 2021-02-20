@@ -19,7 +19,10 @@ module.exports.newDeal = (req, res, next) => {
                     interestedUser: req.user.id,
                     antCoins: service.antCoins
                 })
-                .then(deal => res.render('users/profile'))
+                .then(deal => {
+                    if (deal) {
+                    res.redirect('/profile')}
+                })
                 .catch(createError(403, 'No se ha podido crear el trato'))
                 } else {
                     next(createError(403, 'No tienes suficientes Antcoins'))// TODO mostrar un alert de que no tiene monedas
@@ -30,3 +33,78 @@ module.exports.newDeal = (req, res, next) => {
         })
         .catch(error => next(error))
 }
+
+module.exports.acceptDeal = (req, res, next) => {
+   const dealId = req.params.id;
+   req.body.status = 'Aceptado'
+   Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
+    .then((deal) => {
+      if (deal) {
+        res.redirect('/profile');
+      } else {
+        next(createError(404, 'Este trato no existe'));
+      }
+    })
+    .catch((error) => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        const deal = req.body;
+        deal.id = req.params.id;
+        res.render('/profile', {
+          errors: error.errors,
+          deal: deal,
+        });
+      } else {
+        next(error);
+      }
+    });
+}
+
+module.exports.cancelDeal = (req, res, next) => {
+    const dealId = req.params.id;
+    req.body.status = 'Cancelado'
+    Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
+     .then((deal) => {
+       if (deal) {
+         res.redirect('/profile');
+       } else {
+         next(createError(404, 'Este trato no existe'));
+       }
+     })
+     .catch((error) => {
+       if (error instanceof mongoose.Error.ValidationError) {
+         const deal = req.body;
+         deal.id = req.params.id;
+         res.render('/profile', {
+           errors: error.errors,
+           deal: deal,
+         });
+       } else {
+         next(error);
+       }
+     });
+ }
+ 
+ module.exports.endDeal = (req, res, next) => {
+    const dealId = req.params.id;
+    req.body.status = 'Finalizado'
+    Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
+     .then((deal) => {
+       if (deal) {
+         res.redirect('/profile');
+       } else {
+         next(createError(404, 'Este trato no existe'));
+       }
+     })
+     .catch((error) => {
+       if (error instanceof mongoose.Error.ValidationError) {
+         const deal = req.body;
+         deal.id = req.params.id;
+         res.render('/profile', {
+           errors: error.errors,
+           deal: deal,
+         });
+       } else {
+         next(error);
+       }
+     });
+ }

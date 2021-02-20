@@ -33,17 +33,40 @@ hbs.registerHelper('itsMe', (userId, userOfferId, options) => {
   }
 });
 
-hbs.registerHelper('acceptedDeal', (status, options) => {
-  if (status === 'Aceptado') { 
+hbs.registerHelper('dealOwner', (ownerId, userId, options) => {
+  if (ownerId == userId) { 
     return options.fn()
   } else {
     return options.inverse();
   }
 });
 
-hbs.registerHelper('dealOwner', (ownerId, userId, options) => {
+hbs.registerHelper('isWaiting', (status, options) => {
+  if (status == 'Pendiente') { 
+    return options.fn()
+  } else {
+    return options.inverse();
+  }
+});
 
-  if (ownerId == userId) { 
+hbs.registerHelper('isAccepted', (status, options) => {
+  if (status == 'Aceptado') { 
+    return options.fn()
+  } else {
+    return options.inverse();
+  }
+});
+
+hbs.registerHelper('isEnded', (status, options) => {
+  if (status == 'Finalizado') { 
+    return options.fn()
+  } else {
+    return options.inverse();
+  }
+});
+
+hbs.registerHelper('isCancelled', (status, options) => {
+  if (status == 'Cancelado') { 
     return options.fn()
   } else {
     return options.inverse();

@@ -135,15 +135,3 @@ module.exports.visitOtherProfile = (req, res, next) => {
     .catch(error => next(error))
 }
 
-module.exports.acceptDeal = (req, res, next) => {
-    Deal.findById(req.params.dealId)
-        .then((newDeal) => {
-            if (model.status === 'Pendiente') {
-              
-            } else {
-
-            }
-        })
-        .catch(error => next(error))
-        console.log(dealList)
-}

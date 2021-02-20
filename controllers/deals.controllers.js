@@ -33,7 +33,6 @@ module.exports.newDeal = (req, res, next) => {
         })
         .catch(error => next(error))
 }
-
 module.exports.acceptDeal = (req, res, next) => {
    const dealId = req.params.id;
    req.body.status = 'Aceptado'
@@ -108,3 +107,4 @@ module.exports.cancelDeal = (req, res, next) => {
        }
      });
  }
+

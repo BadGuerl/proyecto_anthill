@@ -1,62 +1,82 @@
-
 <div class="container">
-    <div class="main-body">    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4>{{ user.nickname }}</h4>
-                        <div class="card-body">                   
-                          </div>
-                          <hr>
-                          <div>
-                            <div class="col-mt-3 text-secondary">
-                              {{ user.email }}
-                            </div>
-                          </div>
-                          <hr>
-                          <div>
-                            <div class="col-mt-3 text-secondary">
-                              {{ user.phoneNumber }}
-                            </div>
-                          </div>
-                          <hr>
-                      <p class="text-secondary mb-1">{{ user.service }}</p>
-                      <p class="text-muted font-size-sm">{{ user.bio }}</p>
-                      {{!-- <button class="btn btn-primary">Follow??</button>
-                      <button class="btn btn-outline-primary">Message??</button> --}}
-                    </div>
-                  </div>
+  <div class="main-body">
+    <div class="col-md-16 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-column align-items-center text-center">
+            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Admin" class="rounded-circle"
+              width="150">
+            <div class="mt-3">
+              <h4>{{ user.nickname }}</h4>
+              <div class="card-body">
+              </div>
+              <hr>
+              <div>
+                <div class="col-mt-3 text-secondary">
+                  {{ user.email }}
                 </div>
               </div>
-            </div>
-            <div class="col-md-8">
-              <div class="row gutters-sm">
-                <div class="row">
-                  {{#each services as | service | }}
-                    <form action="/service/{{ service.id }}/deals" method="post">
-                      <div class="col-12">
-                        <div class="card" style="width: 18rem;">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-img-top" alt="service image">
-                            <div class="card-body">
-                              <h5 class="card-title">{{ service.title }}</h5>
-                              <p class="card-text">{{ service.description }}</p>
-                              <h5 class="card-title">{{ service.antCoins }} Antcoins</h5>
-                              <button type="submit" class="btn btn-warning text-white center">Ir al trato</button>
-                            </div>
-                          </div>
-                      </div>
-                    </form>
-                  {{/each }}
+              <hr>
+              <div>
+                <div class="col-mt-3 text-secondary">
+                  {{ user.phoneNumber }}
                 </div>
               </div>
+              <hr>
+              <p class="text-secondary mb-1">{{ user.service }}</p>
+              <p class="text-muted font-size-sm">{{ user.bio }}</p>
             </div>
           </div>
         </div>
+      </div>
     </div>
+    <div class="card-deck">
+
+      <div class="col-md-16 mb-3 ">
+        <div class="d-flex flex-column align-items-center text-center">
+          <h5 class="card-title">Ofertas del usuario</h5>
+          {{#each services as | service | }}
+          <form action="/service/{{ service.id }}/dealer" method="post">
+            <div class="col-16">
+              <div class="card" style="width: 60rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ service.title }}</h5>
+                  <p class="card-text">{{ service.description }}</p>
+                  <h5 class="card-title">{{ service.antCoins }} Antcoins</h5>
+                  <button type="submit" class="btn btn-warning text-white center">Ir al trato</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+          {{/each }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-16 mb-3">
+      <div class="d-flex flex-column align-items-center text-center">
+        <h5 class="card-title">Reseñas</h5>
+        {{#each reviews as | review | }}
+        <div class="col-16">
+          <div class="card" style="width: 10rem; height: 10rem">
+            <div class="card-body">
+              <a class="card-title" href="/users/{{review.idReviewer.id}}">Autor: {{ review.idReviewer.nickname }} </a>
+              <p  class="card-title">{{ review.comment }}</p>
+            </div>
+          </div>
+        </div>
+        {{/each }}
+        <form action="/users/{{user.id}}/comments" method="post">
+          <div class="card" style="width: 20rem;">
+            <textarea type="text" class="form-control" name="comment" value="{{ review.comment }}"></textarea>
+          </div>
+            <button type="submit" class="btn btn-warning text-white center">Comentar</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 

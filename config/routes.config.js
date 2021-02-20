@@ -24,7 +24,7 @@ router.post('/service/new', secure.isAuthenticated, servicesController.addServic
 router.get('/service/:id/delete', secure.isAuthenticated, servicesController.deleteService);
 router.post('/offers/filter', secure.isAuthenticated ,servicesController.searchService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
-// router.get('/service/:servideId', secure.isAuthenticated, dealController.deals);
+router.post('/users/:id/comments', secure.isAuthenticated, usersController.addReview);
 router.post('/service/:serviceId/deals', secure.isAuthenticated, dealController.newDeal);
 // router.get('/service/:serviceId/:id', secure.isAuthenticated, dealController.createDeal);
 // router.post('/service/:serviceId/deals/:id', secure.isAuthenticated, dealController.updateDeal);

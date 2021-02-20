@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const Service = require('../models/service.model');
 
 module.exports.offersList = (req, res, next) => {
-  Service.find()
+  Service.find().populate("owner")
     .then((services) => res.render('services/offers', {
       services
     })) /*ruta en el árbol del proyecto*/
     .catch(next);
 }
+
 
 module.exports.newOffer = (req, res, next) => {
   res.render('services/new');
@@ -59,9 +60,14 @@ module.exports.searchService = (req, res, next) => {
   console.log(keyRE);
   Service.find({
       title: keyRE
-    })
+    }).populate("owner")
     .then((services) => {  /* se tiene que llamar igual que en la variable de hbs */
       res.render('services/offers', { services } )   
     })
     .catch(next);
+}
+
+module.exports.viewConversor = (req, res, next) => {
+  res.render('services/conversor')   
+
 }

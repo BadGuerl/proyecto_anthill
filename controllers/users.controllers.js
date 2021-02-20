@@ -147,9 +147,6 @@ module.exports.visitOtherProfile = (req, res, next) => {
                                            idReviwer ya no es un ID , es un objeto de tipo User. Si quiero acceder al id , sería review.idReviewer.id
                                            si quiero aceder al nickname: review.idReviewer.nickname */
                 .then(reviews => {
-                  console.log (reviews)
-                  console.log (services)
-
                   res.render('users/otherProfile', {
                     user: user,
                     services: services,

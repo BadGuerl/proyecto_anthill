@@ -31,5 +31,7 @@ router.post('/service/:serviceId/deals', secure.isAuthenticated, dealController.
 router.post('/profile/:id/accepted', secure.isAuthenticated, dealController.acceptDeal);
 router.post('/profile/:id/cancelled', secure.isAuthenticated, dealController.cancelDeal);
 router.post('/profile/:id/ended', secure.isAuthenticated, dealController.endDeal);
+router.get('/conversorAntCoins', secure.isAuthenticated, servicesController.viewConversor);
+
 
 module.exports = router;

@@ -60,7 +60,17 @@ module.exports.logout = (req, res, next) => {
 };
 
 module.exports.userProfile = (req, res, next) => {
-  res.render('users/profile');
+  Deal.find({$or: [{interestedUser: res.locals.currentUser.id}, {serviceOwner: res.locals.currentUser.id}]  })
+  .populate('service')
+  .populate('serviceOwner')
+  .populate('interestedUser')
+  .then(deals => {
+        res.render('users/profile', {
+          deals
+        })
+      } 
+    )
+  .catch(error => next(error))
 };
 
 module.exports.updateProfile = (req, res, next) => {

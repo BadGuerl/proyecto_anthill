@@ -7,7 +7,7 @@ require('../models/user.model');
 const dealSchema = new Schema({
     status: {
       type: String,
-      enum: ['Pendiente', 'Aceptado' , 'Realizado' , 'Cancelado'],
+      enum: ['Pendiente', 'Aceptado', 'Realizado' , 'Cancelado'],
     },
     /*ID del servicio que se ha contratado*/
     service:  {

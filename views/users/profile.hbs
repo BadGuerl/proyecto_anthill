@@ -2,6 +2,8 @@
     <link rel='stylesheet' href='/./public/stylesheets/styles.css' />
 </head>
 
+
+{{!-- Perfil del usuario --}}
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
@@ -77,7 +79,122 @@
                         </div>
                     </div>
                 </div>
+                
+{{!-- historial de tratos --}}
+<hr class="m-5">
+            <h3 class="text-info text-center pb-5">Tu historial de actividades</h3>
+                {{#each deals as |deal| }}
+                    {{#dealOwner deal.serviceOwner.id ../currentUser.id }}
+                    <h5 class="card-title text-info">{{ deal.interestedUser.nickname }} quiere que le eches una mano.</h5>
+                        <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src={{ deal.interestedUser.avatarUrl }} alt="Imagen del usuario">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h6 class="card-text">{{ deal.service.title }}</h6>
+                                            <p class="card-text">{{ deal.interestedUser.description }}</p>
+                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }}</small></p>
+                                            <div class="d-flex justify-content-end">
+
+                                                {{#isWaiting deal.status }}
+                                                <form action="/profile/{{deal.id}}/accepted" method="POST">
+                                                    {{!-- <a href="/profile/{{ deal.id }}/accepted" class="btn btn-info text-white m-2">Aceptar</a> --}}
+                                                    <button type="submit" class="btn btn-warning text-white center">Aceptar</button>
+                                                </form>
+                                                <form action="/profile/{{deal.id}}/cancelled" method="POST">
+                                                    <button type="submit" class="btn btn-warning text-white center">Cancelar</button>
+                                                </form>
+                                             
+                                                    {{!-- <h5>{{ deal.status }}</h5> --}}
+                                                {{/isWaiting }}
+
+
+                                                {{#isAccepted deal.status }}
+                                                {{!-- <form action="/profile/{{deal.id}}/ended" method="POST">
+                                                    <button type="submit" class="btn btn-warning text-white center">Pendiente</button>
+                                                </form> --}}
+                                                
+                                                    <h5>{{ deal.status }}</h5>
+                                                {{/isAccepted }}
+
+
+                                                {{#isCancelled deal.status }}
+                                                    <h5>{{ deal.status }}</h5>
+                                                {{/isCancelled }}
+
+                                                {{#isEnded deal.status }}
+                                                    <form action="/profile/{{deal.id}}/cancelled" method="POST">
+                                                    <button type="submit" class="btn btn-warning text-white center">Cobrar servicio</button>
+                                                </form>
+                                                
+                                                    <h5>{{ deal.status }}</h5>
+                                                {{/isEnded }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    {{else }}
+
+                        <h5 class="card-title text-warning">Estado de tu trato con {{ deal.serviceOwner.nickname }}</h5>
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src={{ deal.serviceOwner.avatarUrl }} alt="Imagen del usuario">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h6 class="card-text">{{ deal.service.title }}</h6>
+                                            <p class="card-text">{{ deal.serviceOwner.description }}</p>
+                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }}</small></p>
+                                            <div class="d-flex justify-content-end">
+
+                                                {{#isWaiting deal.status }}
+                                                <form action="/profile/{{deal.id}}/accepted" method="POST">
+                                                    {{!-- <a href="/profile/{{ deal.id }}/accepted" class="btn btn-info text-white m-2">Aceptar</a> --}}
+                                                    {{!-- <button type="submit" class="btn btn-warning text-white center">Aceptar</button>
+                                                </form>
+                                                <form action="/profile/{{deal.id}}/cancelled" method="POST">
+                                                    <button type="submit" class="btn btn-warning text-white center">Cancelar</button>
+                                                </form> --}}
+                                                
+                                                    <h5>{{ deal.status }}</h5>
+                                                {{/isWaiting }}
+
+
+                                                {{#isAccepted deal.status }}
+                                                <form action="/profile/{{deal.id}}/ended" method="POST">
+                                                    <button type="submit" class="btn btn-warning text-white center">Finalizar trato con {{ deal.serviceOwner.nickname}}</button>
+                                                </form>
+                                                    {{!-- <h5>{{ deal.status }}</h5> --}}
+                                                {{/isAccepted }}
+
+
+                                                {{#isCancelled deal.status }}
+                                                    <h5>{{ deal.status }}</h5>
+                                                {{/isCancelled }}
+
+
+                                                {{#isEnded deal.status }}
+                                                    Trato finalizado con {{ deal.serviceOwner.nickname}}
+                                                
+                                                    <h5>{{ deal.status }}</h5>
+                                                {{/isEnded }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    {{/dealOwner }}
+
+                {{/each }}
             </div>
         </div>
     </div>
 </div>
+

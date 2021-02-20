@@ -19,6 +19,10 @@ const serviceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    nickname: {
+        type: String,
+        ref: 'User'
+    },
     antCoins: {
         type: Number,
         required: 'El coste del servicio es obligatorio. Si necesitas ayuda con los precios, visita nuestra tabla de equivalencias'

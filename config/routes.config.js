@@ -25,9 +25,11 @@ router.get('/service/:id/delete', secure.isAuthenticated, servicesController.del
 router.post('/offers/filter', secure.isAuthenticated ,servicesController.searchService);
 router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfile);
 router.post('/users/:id/comments', secure.isAuthenticated, usersController.addReview);
-
 router.post('/service/:serviceId/deals', secure.isAuthenticated, dealController.newDeal);
-
-
+// router.get('/service/:serviceId/:id', secure.isAuthenticated, dealController.createDeal);
+// router.post('/service/:serviceId/deals/:id', secure.isAuthenticated, dealController.updateDeal);
+router.post('/profile/:id/accepted', secure.isAuthenticated, dealController.acceptDeal);
+router.post('/profile/:id/cancelled', secure.isAuthenticated, dealController.cancelDeal);
+router.post('/profile/:id/ended', secure.isAuthenticated, dealController.endDeal);
 
 module.exports = router;

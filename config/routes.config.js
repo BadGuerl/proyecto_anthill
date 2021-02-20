@@ -28,5 +28,8 @@ router.get('/users/:id', secure.isAuthenticated, usersController.visitOtherProfi
 router.post('/service/:serviceId/deals', secure.isAuthenticated, dealController.newDeal);
 // router.get('/service/:serviceId/:id', secure.isAuthenticated, dealController.createDeal);
 // router.post('/service/:serviceId/deals/:id', secure.isAuthenticated, dealController.updateDeal);
+router.post('/profile/:id/accepted', secure.isAuthenticated, dealController.acceptDeal);
+router.post('/profile/:id/cancelled', secure.isAuthenticated, dealController.cancelDeal);
+router.post('/profile/:id/ended', secure.isAuthenticated, dealController.endDeal);
 
 module.exports = router;

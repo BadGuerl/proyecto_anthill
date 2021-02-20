@@ -1,5 +1,5 @@
 <head>
-      <link rel='stylesheet' href='/./public/stylesheets/styles.css' />
+    <link rel='stylesheet' href='/./public/stylesheets/styles.css' />
 </head>
 
 <div class="page-content page-container" id="page-content">
@@ -10,14 +10,16 @@
                     <div class="row m-l-0 m-r-0">
                         <div class="col-sm-4 bg-info user-profile">
                             <div class="card-block text-center text-white">
-                                <div class="m-b-25"><img src="{{ currentUser.avatarUrl }}" class="img-radius" alt="Imagen del perfil de usuario"> </div>
+                                <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-white ">Hola {{ currentUser.nickname
+                                    }}</h4>
+                                <div class="m-b-25"><img src="{{ currentUser.avatarUrl }}" class="img-radius"
+                                        alt="Imagen del perfil de usuario"> </div>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="card-block">
                                 <form action="/profile" method="post">
-                                    <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-info ">Hola {{ currentUser.nickname }}</h4>
-                                    <input type="text" class="form-control" name="nickname" placeholder="nickname" value="{{ currentUser.nickname }}">
+                                    <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-info ">Edita tu perfil</h4>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Email</p>
@@ -25,32 +27,51 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Teléfono de contacto</p>
-                                            <input type="text" class="form-control" name="phoneNumber" placeholder="phoneNumber" value="{{ currentUser.phoneNumber }}">
+                                            <input type="text" class="form-control" name="phoneNumber"
+                                                placeholder="phoneNumber" value="{{ currentUser.phoneNumber }}">
                                         </div>
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col">
                                             <div class="form-outline">
                                                 <label class="form-label" for="form6Example1">Contraseña Nueva</label>
-                                                <input type="password" class="form-control {{isInvalid errors.password }}" name="password" placeholder="Password">
+                                                <input type="password"
+                                                    class="form-control {{isInvalid errors.password }}" name="password"
+                                                    placeholder="Password">
                                                 {{formError errors.password }}
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-outline">
-                                                <label class="form-label" for="form6Example2">Confirma Contraseña</label>
-                                                <input type="password" class="form-control {{isInvalid errors.passwordMatch }}" name="passwordMatch" placeholder="Repeat Password">
+                                                <label class="form-label" for="form6Example2">Confirma
+                                                    Contraseña</label>
+                                                <input type="password"
+                                                    class="form-control {{isInvalid errors.passwordMatch }}"
+                                                    name="passwordMatch" placeholder="Repeat Password">
                                                 {{formError errors.passwordMatch }}
                                             </div>
                                         </div>
                                     </div>
                                     <hr>
                                     <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Bio</h6>
-                                    <textarea type="text" class="form-control" name="bio" placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
-                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Añade palabras clave para que encuentren tu servicio</h6>
-                                    <textarea type="text" class="form-control" name="bio" placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
-                                     
-                                    <button type="submit" class="btn btn-warning text-white btn-block mt-3">Actualizar perfil</button>
+                                    <textarea type="text" class="form-control" name="bio"
+                                        placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
+                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Añade palabras clave para que
+                                        encuentren tu servicio</h6>
+                                    <textarea type="text" class="form-control" name="bio"
+                                        placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-picture-o"></i></span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="avatar-input" name="avatarUrl">
+                                            <label class="custom-file-label" for="avatar-input">Carga imagen</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning text-white btn-block mt-3">Actualizar
+                                        perfil</button>
                                 </form>
                             </div>
                         </div>

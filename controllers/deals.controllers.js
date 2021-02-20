@@ -31,23 +31,23 @@ module.exports.newDeal = (req, res, next) => {
         .catch(error => next(error))
 }
 
-module.exports.dealList = (req, res, next) => {
-    Deal.find()
-        .then((deals) => res.render('services/deal', {
-            deals
-        })) /*ruta en el árbol del proyecto*/
-        .catch(next);
-  }
+// module.exports.dealList = (req, res, next) => {
+//     Deal.find()
+//         .then((deals) => res.render('services/deal', {
+//             deals
+//         })) /*ruta en el árbol del proyecto*/
+//         .catch(next);
+//   }
 
-module.exports.acceptDeal = (req, res, next) => {
-    Deal.findById(req.params.dealId)
-        .then((newDeal) => {
-            if (model.status(/*pendiente*/)) {
+// module.exports.acceptDeal = (req, res, next) => {
+//     Deal.findById(req.params.dealId)
+//         .then((newDeal) => {
+//             if (model.status(/*pendiente*/)) {
 
-            } else {
+//             } else {
 
-            }
-        })
-        .catch(error => next(error))
-        console.log(dealList)
-}
+//             }
+//         })
+//         .catch(error => next(error))
+//         console.log(dealList)
+// }

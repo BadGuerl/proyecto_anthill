@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^.{8,}$/;
 
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -20,8 +21,7 @@ const userSchema = new Schema({
   },
   nickname: {
     type: String,
-    unique: false,
-    default: "nickname"
+    unique: true,
   },
   bio: {
     type: String,
@@ -30,15 +30,16 @@ const userSchema = new Schema({
   },
   phoneNumber: {
     type: Number,
-    default: 00000000
-  },
-  avatarUrl:{ 
-    type: String, 
-    default: 'images/default-avatar.png' 
   },
   balance: {
     type: Number,
     default:20
+  },
+  avatarUrl: {
+    type: String,
+    default: function() {
+      return `https://i.pravatar.cc/150?u=${this.id}`
+    }
   }
 },{
   timestamps: true

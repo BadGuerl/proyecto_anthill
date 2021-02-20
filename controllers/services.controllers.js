@@ -61,7 +61,6 @@ module.exports.searchService = (req, res, next) => {
       title: keyRE
     })
     .then((services) => {  /* se tiene que llamar igual que en la variable de hbs */
-      console.log(services);
       res.render('services/offers', { services } )   
     })
     .catch(next);

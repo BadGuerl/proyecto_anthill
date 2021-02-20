@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
     stars: {
-      type: number,
+      type: Number,
       enum: [1,2,3,4,5]
     },
     comment: { 
@@ -13,8 +13,12 @@ const reviewSchema = new Schema({
     idUser: { 
         type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+    idReviewer: { 
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     }
   });
 
-const review = mongoose.model('review', reviewSchema);
-module.exports = review;
+const Review = mongoose.model('review', reviewSchema);
+module.exports = Review;

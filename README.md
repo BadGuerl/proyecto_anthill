@@ -26,3 +26,7 @@ EN GITHUB:
 
 
 holi!
+
+
+heroku: 
+download and install: esto si tienes q hacer tu tambien

@@ -30,11 +30,9 @@
                                 <div class="media">
 
                                     <div class="media-body">
-                                        <span class="float-right text-info">{{ service.nickname }}<i class="icofont-check-circled
-                                            text-info">
-                                            </i></span>
-                                        <p class="text-secondary mb-1"><i class="icofont-location-arrow"></i> {{
-                                            service.description }}</p>
+                                        <span class="float-right text-info">{{ service.nickname }}<i class="icofont-check-circled text-info"></i></span>
+                                        <p class="text-secondary mb-1"><i class="icofont-location-arrow"></i>
+                                        {{ service.description }}</p>
                                         <hr>
                                         <div class="row mb-4">
                                             <div class="col">
@@ -45,8 +43,7 @@
                                             {{#if service.owner.phoneNumber }}
                                             <div class="col">
                                                 <div class="form-outline">
-                                                    <p class="text-muted f-w-400">Contacto: {{ service.owner.phoneNumber
-                                                        }}</p>
+                                                    <p class="text-muted f-w-400">Contacto: {{ service.owner.phoneNumber }}</p>
                                                 </div>
                                             </div>
                                             {{/if }}
@@ -58,19 +55,13 @@
                                         </div>
                                         <div class="float-end">
                                             {{#itsMe ../currentUser.id service.owner.id }}
-                                            <a class="btn btn-sm btn-outline-info"
-                                                href="/service/{{service.id}}/delete"><i
-                                                    class="icofont-headphone-alt"></i>Borrar</a>
+                                            <a class="btn btn-sm btn-outline-info" href="/service/{{service.id}}/delete"><i class="icofont-headphone-alt"></i>Borrar</a>
                                             {{else}}
-                                            <a class="btn btn-sm btn-outline-info" href="/users/{{service.owner.id}}"><i
-                                                    class=" icofont-headphone-alt"></i>Ver Perfil</a>
-                                            <button type="submit" class="btn btn-sm btn-info text-white"><i
-                                                    class="icofont-refresh"></i>Solicitar</button>
+                                            <a class="btn btn-sm btn-outline-info" href="/users/{{service.owner.id}}"><i class=" icofont-headphone-alt"></i>Ver Perfil</a>
+                                            <button type="submit" class="btn btn-sm btn-info text-white"><i class="icofont-refresh"></i>Solicitar</button>
                                             {{/itsMe}}
                                         </div>
-                                        <p class="mb-0 text-black text-info pt-2 fw-bo"><span
-                                                class="text-black font-weight-bold">Precio:</span> {{ service.antCoins
-                                            }}
+                                        <p class="mb-0 text-black text-info pt-2 fw-bo"><span class="text-black font-weight-bold">Precio:</span> {{ service.antCoins }}
                                             AntCoins
                                         </p>
                                     </div>

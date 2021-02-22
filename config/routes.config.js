@@ -7,7 +7,7 @@ const usersController = require('../controllers/users.controllers');
 const servicesController = require('../controllers/services.controllers');
 const secure = require('../middlewares/secure.middleware');
 const dealController = require('../controllers/deals.controllers');
-// const storage = require('../configs/storage.config');
+const storage = require('../config/storage.config');
 
 router.get('/inicio', initController.inicio);
 router.get('/register', usersController.register);
@@ -19,7 +19,7 @@ router.post('/logout', secure.isAuthenticated, usersController.logout);
 router.get('/home', secure.isAuthenticated, homeController.vervista);
 router.get('/profile', secure.isAuthenticated, usersController.userProfile);
 router.post('/profile', secure.isAuthenticated, usersController.updateProfile);
-// router.post('/profile', secure.isAuthenticated, storage.single('avatar'), usersController.updateProfile);
+// router.post('/profile', storage.single('avatar'), usersController.updateProfile);
 router.get('/offers', secure.isAuthenticated, servicesController.offersList);
 router.get('/service/new', secure.isAuthenticated, servicesController.newOffer);
 router.post('/service/new', secure.isAuthenticated, servicesController.addService);

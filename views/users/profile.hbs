@@ -114,7 +114,7 @@
                                                 {{/isCancelled }}
 
                                                 {{#isEnded deal.status }}
-                                                    <form action="/profile/{{deal.id}}/cancelled" method="POST">
+                                                    <form action="/profile/{{deal.id}}/finaliced" method="POST">
                                                     <button type="submit" class="btn btn-warning text-white center">Cobrar servicio</button>
                                                     </form>
                                                 {{/isEnded }}
@@ -151,7 +151,7 @@
                                                 <form action="/profile/{{deal.id}}/ended" method="POST">
                                                     <button type="submit" class="btn btn-warning text-white center">Finalizar trato con {{ deal.serviceOwner.nickname}}</button>
                                                 </form>
-                                                    <h5>{{ deal.status }}</h5>
+                                                    {{!-- <h5>{{ deal.status }}</h5> --}}
 
                                                 {{/isAccepted }}
 

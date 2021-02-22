@@ -12,9 +12,11 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'user-avatars',
-    format: 'jpeg',
+    folder: 'usuarios-avatares',
+    format: ['jpeg','png'],
   }
 });
 
-module.exports = multer({ storage });
+const uploadCloud = multer({ storage });
+ 
+module.exports = uploadCloud;

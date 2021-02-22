@@ -64,6 +64,7 @@ module.exports.userProfile = (req, res, next) => {
   .populate('service')
   .populate('serviceOwner')
   .populate('interestedUser')
+  .sort({"_id":-1})
   .then(deals => {
         res.render('users/profile', {
           deals
@@ -74,7 +75,7 @@ module.exports.userProfile = (req, res, next) => {
 };
 
 module.exports.updateProfile = (req, res, next) => {
-  // console.log(req);
+  console.log(req);
 
   function renderWithErrors(errors) {
     Object.assign(req.user, req.body);
@@ -120,7 +121,10 @@ module.exports.updateProfile = (req, res, next) => {
       .then(user => {
         req.login(user, error => {
           if (error) next(error);
-          else res.redirect('/profile');
+          else{
+            res.redirect('/profile');
+            console.log(user);
+          } 
         });
       }).catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -137,11 +141,13 @@ module.exports.visitOtherProfile = (req, res, next) => {
   User.findById(userId)
     .then(user => {
       if (user) {
-        Service.find({
-            owner: userId
-          })
-          .then(services => {
-            if (services) {
+        Deal.find({$or: [{interestedUser: userId}, {serviceOwner: userId}]  })
+          .populate('service')
+          .populate('serviceOwner')
+          .populate('interestedUser')
+          .sort({"_id":-1})
+          .then(deals => {
+            if (deals) {
               Review.find({
                 idUser: userId
                 }).populate("idReviewer") /*Tengo el id del reviewer en el modelo Review, pero quiero tener el nickname:
@@ -151,7 +157,7 @@ module.exports.visitOtherProfile = (req, res, next) => {
                 .then(reviews => {
                   res.render('users/otherProfile', {
                     user: user,
-                    services: services,
+                    deals: deals,
                     reviews: reviews
                   });
                 })

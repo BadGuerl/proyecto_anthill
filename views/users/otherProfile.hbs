@@ -46,20 +46,20 @@
 
                        
 <h3 class="text-info text-center m-5">Historial de tratos de {{ user.nickname }}</h3>
-{{#each services as | service | }}
+{{#each deals as | deal | }}
 <div class="page-content page-container" id="page-content">
   <div>
     <div class="row container d-flex justify-content-center">
-      <div class="card mb-3" style="max-width: 600px;"> 
+      <div class="card mb-3" style="max-width: 600px;height:250px"> 
         <div class="row g-0">
-          <div class="col-md-6">
-            <img src={{ this.avatar }} alt="Imagen del usuario">
+          <div class="col-md-6" style="height:250px;background-image:url({{ deal.serviceOwner.avatar }});background-repeat:no-repeat;background-size:cover;background-position:center">
+            {{!-- <img src="{{ deal.serviceOwner.avatar }}" class="img-fluid" alt="Imagen del usuario"> --}}
           </div>
           <div class="col-md-6">
             <div class="card-body">
-              <h5 class="card-text">{{ service.title }}</h5>
-              <p class="card-text">{{ service.description }}</p>
-              <p class="card-text"><small class="text-muted">{{ service.antCoins }} Antcoins</small></p>
+              <h5 class="card-text">{{ deal.service.title }}</h5>
+              <p class="card-text">{{ deal.service.description }}</p>
+              <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }} Antcoins</small></p>
               <div class="d-flex justify-content-end">{{ deal.status }}</div>
               </div>
             </div>

@@ -21,12 +21,13 @@
                             </div>
                         </form>
                     </div>
+
                     {{#each services as |service| }}
                     <form action="/service/{{ service.id }}/deals" method="post">
                         <div class="bg-white card mb-4 order-list shadow-sm">
                             <div class="gold-members p-4">
 
-                                <img class="float-end mr-4 ml-4" src={{ service.owner.avatarUrl }}alt="Imagen del usuario">
+                                <img class="float-end mr-4 ml-4" src={{ service.owner.avatar }} alt="Imagen del usuario">
                                 <h5 class="mb-3 text-info">{{ service.title }}</h5>
                                 <div class="media">
                                     <div class="media-body">

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const createError = require('http-errors');
 const Service = require('../models/service.model');
 const Deal = require('../models/deal.model');
+const User = require('../models/user.model');
 
 module.exports.newDeal = (req, res, next) => {
     Service.findById(req.params.serviceId)
@@ -85,7 +86,6 @@ module.exports.cancelDeal = (req, res, next) => {
  }
  
  module.exports.endDeal = (req, res, next) => {
-<<<<<<< HEAD
     const dealId = req.params.id;
     req.body.status = 'Finalizado'
     Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
@@ -110,55 +110,36 @@ module.exports.cancelDeal = (req, res, next) => {
        }
      });
  }
-=======
-  const dealId = req.params.id;
-  req.body.status = 'Finalizado';
-  Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
-   .then((deal) => {
-     if (deal) {
-       res.redirect('/profile');
-     } else {
-       next(createError(404, 'Este trato no existe'));
-     }
-   })
-   .catch((error) => {
-     if (error instanceof mongoose.Error.ValidationError) {
-       const deal = req.body;
-       deal.id = req.params.id;
-       res.render('/profile', {
-         errors: error.errors,
-         deal: deal,
-       });
-     } else {
-       next(error);
-     }
-   });
-}
->>>>>>> 1aa0b93602ce082121f5b37df52a70a8395426dd
 
  module.exports.payDeal = (req, res, next) => {
   const dealId = req.params.id;
-  req.body.status = 'Pagado'
-  Deal.findOneAndReplace(dealId, { $set: req.body }, { runValidators: true })
-    .then((deal) => {
-      console.log(interestedUser)
-      if (deal.antCoins >= interestedUser.antCoins) {
-        interestedUser.antCoins(balance - interestedUser.antCoins && serviceOwner.antCoins + balance);
-        res.redirect('/profile');
-      }else {
-        next(createError(404, 'Este trato no existe'));
-      }
-    })
-    .catch((error) => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        const deal = req.body;
-        deal.id = req.params.id;
-        res.render('/profile', {
-          errors: error.errors,
-          deal: deal,
-        });
-      } else {
-        next(error);
-      }
-    });
+    req.body.status = 'Pagado'
+    Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
+     .then((deal) => {
+       if (deal) {
+         User.findByIdAndUpdate(deal.interestedUser, {$inc:{balance: deal.antCoins*(-1)}},{ runValidators: true })
+         .then(interestedUser => {
+           User.findByIdAndUpdate(deal.serviceOwner,{$inc:{balance: deal.antCoins}},{ runValidators: true })
+           .then(owner=>{             
+             res.redirect('/profile');
+           });
+          
+         })
+        //  res.render('/otherProfile');
+       } else {
+         next(createError(404, 'Este trato no existe'));
+       }
+     })
+     .catch((error) => {
+       if (error instanceof mongoose.Error.ValidationError) {
+         const deal = req.body;
+         deal.id = req.params.id;
+         res.render('/profile', {
+           errors: error.errors,
+           deal: deal,
+         });
+       } else {
+         next(error);
+       }
+     });
  }

@@ -55,9 +55,7 @@ module.exports.deleteService = (req, res, next) => {
 
 module.exports.searchService = (req, res, next) => {
   const keyWord = req.body.keyWord;
-  const keyRE = new RegExp(keyWord); /*Creamos expresion regular: "/palabra/"*/
-  console.log(keyWord);
-  console.log(keyRE);
+  const keyRE = new RegExp(keyWord , "i"); /*Creamos expresion regular: "/palabra/" . La "i" es el ignorecase*/
   Service.find({
       title: keyRE
     }).populate("owner")

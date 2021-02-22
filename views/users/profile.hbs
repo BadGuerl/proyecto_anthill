@@ -55,127 +55,185 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <hr>
+                                    <label class="form-label" for="form6Example1">Cuenta algo sobre ti!</h6>
+                                        <textarea type="text" class="form-control" name="bio"
+                                            placeholder="{{ currentUser.bio }}"
+                                            value="{{ currentUser.bio }}"></textarea>
 
-                                        <hr>
-
-                                        <label class="form-label" for="form6Example1">¡Cuenta algo sobre ti!</h6>
-                                        <textarea type="text" class="form-control" name="bio" placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
-
-                                        <div class="input-group mt-3">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-picture-o"></i></span>
+                                            </div>
                                             <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="avatar" name="avatar">
-                                                    <label class="custom-file-label" for="avatar"></label>
+                                                <input type="file" class="custom-file-input" id="avatar-input"
+                                                    name="avatarUrl">
+                                                <label class="custom-file-label" for="avatar-input">Carga imagen</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-warning text-white btn-block mt-3">Actualizar perfil</button>
-                                    </div>
+                                        <button type="submit"
+                                            class="btn btn-warning text-white btn-block mt-3">Actualizar
+                                            perfil</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- historial de tratos --}}
+                <hr class="m-5">
+                <h3 class="text-info text-center pb-5">Tu historial de actividades</h3>
+                {{#each deals as |deal| }}
+                {{#dealOwner deal.serviceOwner.id ../currentUser.id }}
+                <h5 class="card-title text-info">{{ deal.interestedUser.nickname }} quiere que le eches una mano.</h5>
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src={{ deal.interestedUser.avatarUrl }} alt="Imagen del usuario">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h6 class="card-text">{{ deal.service.title }}</h6>
+                                <p class="card-text">{{ deal.interestedUser.description }}</p>
+                                <p class="card-text"><small class="text-muted">Precio: {{ deal.service.antCoins }}
+                                        antCoins</small></p>
+                                <div class="d-flex justify-content-end">
+
+                                    {{#isWaiting deal.status }}
+                                    <form action="/profile/{{deal.id}}/accepted" method="POST">
+                                        {{!-- <a href="/profile/{{ deal.id }}/accepted"
+                                            class="btn btn-info text-white m-2">Aceptar</a> --}}
+                                        <button type="submit" class="btn btn-warning text-white center">Aceptar</button>
+                                    </form>
+                                    <form action="/profile/{{deal.id}}/cancelled" method="POST">
+                                        <button type="submit"
+                                            class="btn btn-warning text-white center">Cancelar</button>
+                                    </form>
+                                    {{else }}
+                                    {{!-- <h5>{{ deal.status }}</h5> --}}
+                                    {{/isWaiting }}
+
+
+                                    {{#isCancelled deal.status }}
+                                    <p class="text-secondary mb-2 mt-3">Has rechazado el trato con {{
+                                        deal.serviceOwner.nickname}}.</p>
+                                    {{/isCancelled }}
+
+                                    {{#isEnded deal.status }}
+                                    <form action="/profile/{{deal.id}}/cancelled" method="POST">
+                                        <button type="submit" class="btn btn-warning text-white center">Cobrar
+                                            servicio</button>
+                                    </form>
+                                    {{/isEnded }}
+
+                                    {{#isAccepted deal.status }}
+                                    <p class="text-secondary mb-2 mt-3">Cuando realices el servicio a {{
+                                        deal.serviceOwner.nickname}} se procederá al intercambio de antCoins </p>
+                                    {{/isAccepted }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
 
-                
-                                {{!-- historial de tratos --}}
+                {{else }}
+
+                <h5 class="card-title text-warning">Tu trato con {{ deal.serviceOwner.nickname }}</h5>
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src={{ deal.serviceOwner.avatarUrl }} alt="Imagen del usuario">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h6 class="card-text">{{ deal.service.title }}</h6>
+                                <p class="card-text">{{ deal.serviceOwner.description }}</p>
+                                <p class="card-text"><small class="text-muted">Precio: {{ deal.service.antCoins }}
+                                        antCoins</small></p>
+                                <div class="d-flex justify-content-end">
+
+                                    {{#isAccepted deal.status }}
+                                    <form action="/profile/{{deal.id}}/ended" method="POST">
+                                        <button type="submit" class="btn btn-warning text-white center">Finalizar trato
+                                            con {{ deal.serviceOwner.nickname}}</button>
+                                    </form>
+                                    <h5>{{ deal.status }}</h5>
+                                    {{/isAccepted }}
+
+                                    {{#isWaiting deal.status }}
+                                    <p class="text-secondary mb-2 mt-3">El trato aún está pendiente de aceptación</p>
+                                    {{/isWaiting }}
+
+
+                                    {{#isCancelled deal.status }}
+                                    <p class="text-secondary mb-2 mt-3">{{ deal.serviceOwner.nickname}} canceló el
+                                        trato.</p>
+                                    {{/isCancelled }}
+
+
+                                    {{#isEnded deal.status }}
+                                    <p class="text-secondary mb-2 mt-3"> Trato finalizado con {{
+                                        deal.serviceOwner.nickname}}</p>
+                                    {{/isEnded }}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/dealOwner }}
+
+                {{/each }}
+                {{!-- historial de ofertas --}}
                 <hr>
-                <h3 class="text-info text-center pb-5">Tu historial de actividades</h3>
-                {{#each deals as |deal| }}
-                    {{#dealOwner deal.serviceOwner.id ../currentUser.id }}
-                    <div class="card mb-3" style="max-width: 620px;">
-                        
-                                <div class="row g-0">
-                                    <div class="col-md-6">
-                                        <img src={{ deal.interestedUser.avatar }} alt="Imagen del usuario">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-info mt-2 mb-2">{{ deal.interestedUser.nickname }} quiere que le eches una mano.</h5>
-                                            <h5 class="card-text">{{ deal.service.title }}</h5>
-                                            <p class="card-text">{{ deal.service.description }}</p>
-                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }} Antcoins</small></p>
-                                            <div class="d-flex justify-content-end">
+                <hr>
 
-                                                {{#isWaiting deal.status }}
-                                                <form action="/profile/{{deal.id}}/accepted" method="POST">
-                                                    <button type="submit" class="btn btn-warning text-white center m-1">Aceptar</button>
-                                                </form>
-                                                <form action="/profile/{{deal.id}}/cancelled" method="POST">
-                                                    <button type="submit" class="btn btn-warning text-white center m-1">Cancelar</button>
-                                                </form>
-                                                {{/isWaiting }}
+                <h4 class="card-title">Tus ofertas</h4>
+                {{#each services as | service | }}
 
-                                                {{#isAccepted deal.status }}
-                                                    <h5 class="text-info">{{ deal.status }}</h5>
-                                                {{/isAccepted }}
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
 
+                        <div class="bg-white card mb-4 order-list shadow-sm">
+                            <div class="gold-members p-4">
+                                <h5 class="mb-3 text-info">{{ service.title }}</h5>
+                                <div class="media">
 
-                                                {{#isCancelled deal.status }}
-                                                    <h5 class="text-info">{{ deal.status }}</h5>
-                                                {{/isCancelled }}
-
-                                                {{#isEnded deal.status }}
-                                                    <form action="/profile/{{deal.id}}/cancelled" method="POST">
-                                                    <button type="submit" class="btn btn-warning text-white center">Cobrar servicio</button>
-                                                    </form>
-                                                {{/isEnded }}
-
-                                                {{!-- {{#isPaid }}
-                                                <h5 class="text-info"><i class="bi bi-check color-warning"></i>Finalizado</h5>
-                                                {{/isPaid }} --}}
-
-                                            </div>
-                                        </div>
+                                    <div class="media-body">
+                                        <p class="text-secondary mb-2 mt-3">{{ service.description }}</p>
+                                        <hr>
+                                        <p class="mb-0 text-black text-info pt-2 fw-bo"><span
+                                                class="text-black font-weight-bold">Precio:</span> {{
+                                            service.antCoins }}
+                                            AntCoins
+                                        </p>
                                     </div>
                                 </div>
                             </div>
 
-                    {{else }}
+                        </div>
+                    </div>
+                </div>
+                {{!-- historial de reseñas --}}
 
-                            <div class="card mb-3" style="max-width: 620px;">
-                                
-                                <div class="row g-0">
-                                    <div class="col-md-6">
-                                        <img src={{ deal.serviceOwner.avatar }} alt="Imagen del usuario">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-warning mt-2 mb-2">Estado de tu trato con {{ deal.serviceOwner.nickname }}</h5>
-                                            <h5 class="card-text">{{ deal.service.title }}</h5>
-                                            <p class="card-text">{{ deal.serviceOwner.description }}</p>
-                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }} Antcoins</small></p>
-                                            <div class="d-flex justify-content-end">
-
-
-
-                                                {{#isAccepted deal.status }}
-                                                <form action="/profile/{{deal.id}}/ended" method="POST">
-                                                    <button type="submit" class="btn btn-warning text-white center">Finalizar trato con {{ deal.serviceOwner.nickname}}</button>
-                                                </form>
-                                                    <h5>{{ deal.status }}</h5>
-
-                                                {{/isAccepted }}
-
-                                                {{#isCancelled deal.status }}
-                                                    <h5 class="text-warning">{{ deal.status }}</h5>
-                                                {{/isCancelled }}
-
-                                                {{#isEnded deal.status }}
-                                                    <h5 class="text-warning"><i class="bi bi-check color-warning"></i>Trato finalizado</h5>
-                                                {{/isEnded }}
-                                            {{!-- 
-                                                {{#isPaid }}
-                                                <h5 class="text-info"><i class="bi bi-check color-warning"></i>Trato finalizado</h5>
-                                                {{/isPaid }} --}}
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    {{/dealOwner }}
+                <hr>
+                <hr>
+                {{/each }}
+                <h4 class="card-title">Esto es lo que dicen sobre ti</h4>
+                {{#each reviews as | review | }}
+                <div class="col-16">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="card-body">
+                            <p class="card-title">{{ review.comment }}</p>
+                            <a class="card-title" href="/users/{{review.idReviewer.id}}">Autor: {{
+                                review.idReviewer.nickname }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 {{/each }}
             </div>
         </div>
     </div>
 </div>
-

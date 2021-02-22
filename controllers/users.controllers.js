@@ -60,17 +60,37 @@ module.exports.logout = (req, res, next) => {
 };
 
 module.exports.userProfile = (req, res, next) => {
-  Deal.find({$or: [{interestedUser: res.locals.currentUser.id}, {serviceOwner: res.locals.currentUser.id}]  })
-  .populate('service')
-  .populate('serviceOwner')
-  .populate('interestedUser')
-  .sort({"_id":-1})
-  .then(deals => {
-        res.render('users/profile', {
-          deals
-        })
-      } 
-    )
+  
+  Service.find({
+    owner: res.locals.currentUser.id
+  })
+  .then(services => {
+    if (services) {
+      Deal.find({$or: [{interestedUser: res.locals.currentUser.id}, {serviceOwner: res.locals.currentUser.id}]  })
+      .populate('service')
+      .populate('serviceOwner')
+      .populate('interestedUser')
+      .sort({"_id":-1})
+      .then(deals => {
+        if(deals){
+          Review.find({
+            idUser: res.locals.currentUser.id
+            }).populate("idReviewer")
+            .then(reviews => {
+              res.render('users/profile', {
+                services: services,
+                reviews: reviews ,
+                deals: deals
+              });
+            })
+            .catch(error => next(error))
+          }
+       })
+      .catch(error => next(error))
+    } else {
+      next(createError(404, 'Service not found'))
+    }
+  })
   .catch(error => next(error))
 
 };

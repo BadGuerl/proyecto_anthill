@@ -56,9 +56,11 @@ module.exports.deleteService = (req, res, next) => {
 module.exports.searchService = (req, res, next) => {
   const keyWord = req.body.keyWord;
   const keyRE = new RegExp(keyWord , "i"); /*Creamos expresion regular: "/palabra/" . La "i" es el ignorecase*/
-  Service.find({
-      title: keyRE
-    }).populate("owner")
+  Service.find({$or: [{title: keyRE}, {nickname: keyRE}, {description: keyRE}]  })
+  // Service.find({
+  //     title: keyRE
+  //   })
+    .populate("owner")
     .then((services) => {  /* se tiene que llamar igual que en la variable de hbs */
       res.render('services/offers', { services } )   
     })

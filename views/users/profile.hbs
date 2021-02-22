@@ -81,10 +81,10 @@
                 <h3 class="text-info text-center pb-5">Tu historial de actividades</h3>
                 {{#each deals as |deal| }}
                     {{#dealOwner deal.serviceOwner.id ../currentUser.id }}
-                    <div class="card mb-3" style="max-width: 620px;height:250px;">
+                    <div class="card mb-3" style="max-width: 620px;">
                         
                                 <div class="row g-0">
-                                    <div class="col-md-6"  style="height:250px;background-position:center;background-image:url({{ deal.interestedUser.avatar }});background-size:cover;background-repeat:no-repeat">
+                                    <div class="col-md-6"  style="height:100%;background-position:center;background-image:url({{ deal.interestedUser.avatar }});background-size:cover;background-repeat:no-repeat">
                                         {{!-- <img src={{ deal.interestedUser.avatar }} alt="Imagen del usuario"> --}}
                                     </div>
                                     <div class="col-md-6">
@@ -103,6 +103,10 @@
                                                     <button type="submit" class="btn btn-warning text-white center m-1">Cancelar</button>
                                                 </form>
                                                 {{/isWaiting }}
+
+                                                {{#isPaid deal.status }}
+                                                <p class="text-secondary mb-2 mt-3">Trato finalizado y cobrado</p>
+                                                {{/isPaid }} 
 
                                                 {{#isAccepted deal.status }}
                                                    <p class="text-secondary mb-2 mt-3">Cuando realices el servicio a {{
@@ -133,10 +137,10 @@
 
                     {{else }}
 
-                            <div class="card mb-3" style="max-width: 620px; height:250px;">
+                            <div class="card mb-3" style="max-width: 620px;">
                                 
                                 <div class="row g-0">
-                                    <div class="col-md-6" style="height:250px;background-position:center;background-image:url({{ deal.serviceOwner.avatar }});background-size:cover;background-repeat:no-repeat">
+                                    <div class="col-md-6" style="height:100%;background-position:center;background-image:url({{ deal.serviceOwner.avatar }});background-size:cover;background-repeat:no-repeat">
                                         {{!-- <img src={{ deal.serviceOwner.avatar }} alt="Imagen del usuario"> --}}
                                     </div>
                                     <div class="col-md-6">
@@ -146,8 +150,13 @@
                                             <p class="card-text">{{ deal.serviceOwner.description }}</p>
                                             <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }} Antcoins</small></p>
                                             <div class="d-flex justify-content-end">
+                                                {{#isWaiting deal.status }}
+                                                <p class="text-secondary mb-2 mt-3">El trato aún está pendiente de aceptación</p>
+                                                {{/isWaiting }} 
 
-
+                                                {{#isPaid deal.status }}
+                                                <p class="text-secondary mb-2 mt-3">Trato finalizado y pagado</p>
+                                                {{/isPaid }} 
 
                                                 {{#isAccepted deal.status }}
                                                 <form action="/profile/{{deal.id}}/ended" method="POST">
@@ -178,17 +187,16 @@
                             </div>
                     {{/dealOwner }}
                 {{/each }}
-           {{!-- historial de ofertas --}}
-                <hr>
-                <hr>
+                {{!-- historial de ofertas --}}
+                <hr class="my-4">
 
-                <h4 class="card-title">Tus ofertas</h4>
+                <h4 class="card-title text-center text-warning mb-4">Tus ofertas</h4>
                 {{#each services as | service | }}
 
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card m-3" style="max-width: 500px;">
                     <div class="row g-0">
 
-                        <div class="bg-white card mb-4 order-list shadow-sm">
+                        <div class="mb-4 order-list">
                             <div class="gold-members p-4">
                                 <h5 class="mb-3 text-info">{{ service.title }}</h5>
                                 <div class="media">
@@ -196,9 +204,8 @@
                                     <div class="media-body">
                                         <p class="text-secondary mb-2 mt-3">{{ service.description }}</p>
                                         <hr>
-                                        <p class="mb-0 text-black text-info pt-2 fw-bo"><span
-                                                class="text-black font-weight-bold">Precio:</span> {{
-                                            service.antCoins }}
+                                        <p class="mb-0 text-black text-info pt-2 fw-bo">
+                                            <span>Precio:</span> {{ service.antCoins }}
                                             AntCoins
                                         </p>
                                     </div>
@@ -209,21 +216,22 @@
                 </div>
                 {{!-- historial de reseñas --}}
 
-                <hr>
-                <hr>
+               
                 {{/each }}
-                <h4 class="card-title">Esto es lo que dicen sobre ti</h4>
+                <hr class="my-4">
+
+                <h4 class="card-title text-center text-warning mb-4">Esto es lo que dicen sobre ti</h4>
                 {{#each reviews as | review | }}
-                <div class="col-16">
-                    <div class="card mb-3" style="max-width: 540px;">
-                        <div class="card-body">
-                            <p class="card-title">{{ review.comment }}</p>
-                            <a class="card-title" href="/users/{{review.idReviewer.id}}">Autor: {{
-                                review.idReviewer.nickname }}
-                            </a>
-                        </div>
+            
+                <div class="card m-3" style="max-width: 500px;">
+                    <div class="card-body">
+                        <p class="card-text">{{ review.comment }}</p>
+                        <a class="card-link text-info text-decoration-none" href="/users/{{review.idReviewer.id}}">Autor: {{
+                            review.idReviewer.nickname }}
+                        </a>
                     </div>
                 </div>
+ 
                 {{/each }}
             </div>
         </div>

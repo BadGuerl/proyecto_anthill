@@ -5,7 +5,7 @@
 <div class="container mb-5 pb-5">
     {{#if services }}
     <div class="col-md-7 mx-auto">
-        <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+        <div class="osahan-account-page-right p-4 h-100">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                     <div class="d-flex justify-content-start align-items-center">
@@ -15,9 +15,17 @@
                     <div>
                         <form action="/offers/filter" method="post">
 
-                            <div class="row mb-4 mt-3 justify-content-center">
+                            {{!-- <div class="row mb-4 mt-3 justify-content-center">
                                 <input type="search" name="keyWord" class="form-control rounded" placeholder="Busca un servicio" aria-label="Search" aria-describedby="search-addon" style="width: 20rem;" />
                                 <a class="btn btn-sm btn-outline-info" style="width: 2.5rem;" href="/offers"><i class="fa fa-search"></i></a>
+                            </div> --}}
+                            <div class="row my-4 justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input type="search" name="keyWord" class="form-control" placeholder="Busca un servicio" aria-label="Search" aria-describedby="search-addon" />
+                                        <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

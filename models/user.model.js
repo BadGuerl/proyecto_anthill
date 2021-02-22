@@ -29,21 +29,20 @@ const userSchema = new Schema({
     default: "Escribe algo sobre ti"
   },
   phoneNumber: {
-    type: Number,
+    type: String,
   },
   balance: {
     type: Number,
-    default:20
+    default: 20
   },
-  avatarUrl: {
+  avatar: {
     type: String,
-    default: function() {
-      return `https://i.pravatar.cc/150?u=${this.id}`
-    }
+    default: `https://res.cloudinary.com/anthillweb/image/upload/v1613921232/users-avatars/Flik_gyce2o.png`
   }
-},{
+  },
+{
   timestamps: true
-}, );
+});
 
 userSchema.pre('save', function (next) {
 

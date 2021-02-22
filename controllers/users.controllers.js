@@ -72,6 +72,7 @@ module.exports.userProfile = (req, res, next) => {
       } 
     )
   .catch(error => next(error))
+
 };
 
 module.exports.updateProfile = (req, res, next) => {

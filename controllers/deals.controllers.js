@@ -33,9 +33,10 @@ module.exports.newDeal = (req, res, next) => {
         })
         .catch(error => next(error))
 }
+
 module.exports.acceptDeal = (req, res, next) => {
    const dealId = req.params.id;
-   req.body.status = 'Aceptado'
+   req.body.status = 'Aceptado';
    Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
     .then((deal) => {
       if (deal) {
@@ -60,7 +61,7 @@ module.exports.acceptDeal = (req, res, next) => {
 
 module.exports.cancelDeal = (req, res, next) => {
     const dealId = req.params.id;
-    req.body.status = 'Cancelado'
+    req.body.status = 'Cancelado';
     Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
      .then((deal) => {
        if (deal) {
@@ -84,6 +85,7 @@ module.exports.cancelDeal = (req, res, next) => {
  }
  
  module.exports.endDeal = (req, res, next) => {
+<<<<<<< HEAD
     const dealId = req.params.id;
     req.body.status = 'Finalizado'
     Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
@@ -108,6 +110,31 @@ module.exports.cancelDeal = (req, res, next) => {
        }
      });
  }
+=======
+  const dealId = req.params.id;
+  req.body.status = 'Finalizado';
+  Deal.findByIdAndUpdate(dealId, { $set: req.body }, { runValidators: true })
+   .then((deal) => {
+     if (deal) {
+       res.redirect('/profile');
+     } else {
+       next(createError(404, 'Este trato no existe'));
+     }
+   })
+   .catch((error) => {
+     if (error instanceof mongoose.Error.ValidationError) {
+       const deal = req.body;
+       deal.id = req.params.id;
+       res.render('/profile', {
+         errors: error.errors,
+         deal: deal,
+       });
+     } else {
+       next(error);
+     }
+   });
+}
+>>>>>>> 1aa0b93602ce082121f5b37df52a70a8395426dd
 
  module.exports.payDeal = (req, res, next) => {
   const dealId = req.params.id;

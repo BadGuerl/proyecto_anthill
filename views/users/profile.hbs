@@ -108,6 +108,7 @@
                                                     <h5 class="text-info">{{ deal.status }}</h5>
                                                 {{/isAccepted }}
 
+
                                                 {{#isCancelled deal.status }}
                                                     <h5 class="text-info">{{ deal.status }}</h5>
                                                 {{/isCancelled }}
@@ -144,15 +145,14 @@
                                             <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }} Antcoins</small></p>
                                             <div class="d-flex justify-content-end">
 
-                                                {{#isWaiting deal.status }}
-                                                <form action="/profile/{{deal.id}}/accepted" method="POST">
-                                                <h5 class="text-warning">{{ deal.status }}</h5>
-                                                {{/isWaiting }}
+
 
                                                 {{#isAccepted deal.status }}
                                                 <form action="/profile/{{deal.id}}/ended" method="POST">
                                                     <button type="submit" class="btn btn-warning text-white center">Finalizar trato con {{ deal.serviceOwner.nickname}}</button>
                                                 </form>
+                                                    <h5>{{ deal.status }}</h5>
+
                                                 {{/isAccepted }}
 
                                                 {{#isCancelled deal.status }}
@@ -162,7 +162,7 @@
                                                 {{#isEnded deal.status }}
                                                     <h5 class="text-warning"><i class="bi bi-check color-warning"></i>Trato finalizado</h5>
                                                 {{/isEnded }}
-{{!-- 
+                                            {{!-- 
                                                 {{#isPaid }}
                                                 <h5 class="text-info"><i class="bi bi-check color-warning"></i>Trato finalizado</h5>
                                                 {{/isPaid }} --}}

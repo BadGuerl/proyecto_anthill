@@ -74,6 +74,7 @@ module.exports.userProfile = (req, res, next) => {
 };
 
 module.exports.updateProfile = (req, res, next) => {
+  // console.log(req);
 
   function renderWithErrors(errors) {
     Object.assign(req.user, req.body);
@@ -82,7 +83,7 @@ module.exports.updateProfile = (req, res, next) => {
       errors: errors,
     });
   }
-  const {
+  const  {
     password,
     passwordMatch,
     name,
@@ -90,6 +91,7 @@ module.exports.updateProfile = (req, res, next) => {
     phoneNumber,
     nickname
   } = req.body;
+  
   if (password && password !== passwordMatch) {
     renderWithErrors({
       passwordMatch: 'Passwords do not match'
@@ -99,7 +101,7 @@ module.exports.updateProfile = (req, res, next) => {
       name
     }
     if (req.file) {
-      updateFields.avatarUrl = req.file.path;
+      updateFields.avatar = req.file.path;
     }
     if (password) {
       updateFields.password = password;
@@ -117,7 +119,7 @@ module.exports.updateProfile = (req, res, next) => {
     req.user.save()
       .then(user => {
         req.login(user, error => {
-          if (error) next(error)
+          if (error) next(error);
           else res.redirect('/profile');
         });
       }).catch(error => {

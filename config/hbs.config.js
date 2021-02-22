@@ -72,3 +72,11 @@ hbs.registerHelper('isCancelled', (status, options) => {
     return options.inverse();
   }
 });
+
+hbs.registerHelper('isPaid', (status, options) => {
+  if (status == 'Pagado') { 
+    return options.fn()
+  } else {
+    return options.inverse();
+  }
+});

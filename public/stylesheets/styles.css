@@ -9,3 +9,10 @@
 .padding-navbar {
     padding: 1% 10% ; 
   }
+
+footer {
+  display: auto;
+  position: fixed;
+  bottom: 0!important;
+  width: 100%;
+} 

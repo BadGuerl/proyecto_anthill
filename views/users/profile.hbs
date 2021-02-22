@@ -4,130 +4,123 @@
 
 
 {{!-- Perfil del usuario --}}
-<div class="page-content page-container" id="page-content">
+<div class="page-content page-container mb-5" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
             <div class="col-md-8">
-                <div class="card user-card-full">
-                    <div class="row m-l-0 m-r-0">
-                        <div class="col-sm-4 bg-info user-profile">
-                            <div class="card-block text-center text-white">
-                                <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-white ">Hola {{ currentUser.nickname
-                                    }}</h4>
-                                <div class="m-b-25"><img src="{{ currentUser.avatarUrl }}" class="img-radius"
-                                        alt="Imagen del perfil de usuario"> </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="card-block">
-                                <form action="/profile" method="post">
-                                    <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-info ">Edita tu perfil</h4>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Email</p>
-                                            <h6 class="text-muted f-w-400">{{ currentUser.email }}</h6>
+                <form action="/profile" method="post">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-info user-profile">
+                                <div class="card-block text-center text-white">
+                                    <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-white ">Hola {{ currentUser.nickname }}</h4>
+                                        <div class="m-b-25">
+                                            <img class="img-fluid" src={{ currentUser.avatar }} alt="Imagen del usuario">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600">Teléfono de contacto</p>
-                                            <input type="text" class="form-control" name="phoneNumber"
-                                                placeholder="phoneNumber" value="{{ currentUser.phoneNumber }}">
+                                        <div>
+                                            <h6 class="text-start text-white">Antcoins disponibles: {{ currentUser.balance }}</h6>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <div class="row mb-4">
-                                        <div class="col">
-                                            <div class="form-outline">
-                                                <label class="form-label" for="form6Example1">Contraseña Nueva</label>
-                                                <input type="password"
-                                                    class="form-control {{isInvalid errors.password }}" name="password"
-                                                    placeholder="Password">
-                                                {{formError errors.password }}
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="card-block">
+                                        <h4 class="m-b-20 p-b-5 b-b-default f-w-600 text-info"><img src="images/minilogo.png" class="img-thumbnail bg-transparent border-0" alt="logo image">  Edita tu perfil</h4>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Email</p>
+                                                    <h6 class="text-muted f-w-400">{{ currentUser.email }}</h6>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Teléfono de contacto</p>
+                                                    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="phoneNumber" value="{{ currentUser.phoneNumber }}">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-outline">
-                                                <label class="form-label" for="form6Example2">Confirma
-                                                    Contraseña</label>
-                                                <input type="password"
-                                                    class="form-control {{isInvalid errors.passwordMatch }}"
-                                                    name="passwordMatch" placeholder="Repeat Password">
-                                                {{formError errors.passwordMatch }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <label class="form-label" for="form6Example1">Cuenta algo sobre ti!</h6>
-                                    <textarea type="text" class="form-control" name="bio"
-                                        placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
+                                        
+                                        <hr>
 
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-picture-o"></i></span>
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="form6Example1">Contraseña Nueva</label>
+                                                    <input type="password"
+                                                        class="form-control {{isInvalid errors.password }}" name="password" placeholder="Password">
+                                                    {{formError errors.password }}
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <label class="form-label" for="form6Example2">Confirma Contraseña</label>
+                                                    <input type="password" class="form-control {{isInvalid errors.passwordMatch }}" name="passwordMatch" placeholder="Repeat Password">
+                                                    {{formError errors.passwordMatch }}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="avatar-input" name="avatarUrl">
-                                            <label class="custom-file-label" for="avatar-input">Carga imagen</label>
+
+                                        <hr>
+
+                                        <label class="form-label" for="form6Example1">¡Cuenta algo sobre ti!</h6>
+                                        <textarea type="text" class="form-control" name="bio" placeholder="{{ currentUser.bio }}" value="{{ currentUser.bio }}"></textarea>
+
+                                        <div class="input-group mt-3">
+                                            <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="avatar" name="avatar">
+                                                    <label class="custom-file-label" for="avatar"></label>
+                                            </div>
                                         </div>
+                                        <button type="submit" class="btn btn-warning text-white btn-block mt-3">Actualizar perfil</button>
                                     </div>
-                                    <button type="submit" class="btn btn-warning text-white btn-block mt-3">Actualizar
-                                        perfil</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
+
                 
-{{!-- historial de tratos --}}
-<hr class="m-5">
-            <h3 class="text-info text-center pb-5">Tu historial de actividades</h3>
+                                {{!-- historial de tratos --}}
+                <hr>
+                <h3 class="text-info text-center pb-5">Tu historial de actividades</h3>
                 {{#each deals as |deal| }}
                     {{#dealOwner deal.serviceOwner.id ../currentUser.id }}
-                    <h5 class="card-title text-info">{{ deal.interestedUser.nickname }} quiere que le eches una mano.</h5>
-                        <div class="card mb-3" style="max-width: 540px;">
+                    <div class="card mb-3" style="max-width: 620px;">
+                        
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src={{ deal.interestedUser.avatarUrl }} alt="Imagen del usuario">
+                                    <div class="col-md-6">
+                                        <img src={{ deal.interestedUser.avatar }} alt="Imagen del usuario">
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="card-body">
-                                            <h6 class="card-text">{{ deal.service.title }}</h6>
-                                            <p class="card-text">{{ deal.interestedUser.description }}</p>
-                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }}</small></p>
+                                            <h5 class="card-title text-info mt-2 mb-2">{{ deal.interestedUser.nickname }} quiere que le eches una mano.</h5>
+                                            <h5 class="card-text">{{ deal.service.title }}</h5>
+                                            <p class="card-text">{{ deal.service.description }}</p>
+                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }} Antcoins</small></p>
                                             <div class="d-flex justify-content-end">
 
                                                 {{#isWaiting deal.status }}
                                                 <form action="/profile/{{deal.id}}/accepted" method="POST">
-                                                    {{!-- <a href="/profile/{{ deal.id }}/accepted" class="btn btn-info text-white m-2">Aceptar</a> --}}
-                                                    <button type="submit" class="btn btn-warning text-white center">Aceptar</button>
+                                                    <button type="submit" class="btn btn-warning text-white center m-1">Aceptar</button>
                                                 </form>
                                                 <form action="/profile/{{deal.id}}/cancelled" method="POST">
-                                                    <button type="submit" class="btn btn-warning text-white center">Cancelar</button>
+                                                    <button type="submit" class="btn btn-warning text-white center m-1">Cancelar</button>
                                                 </form>
-                                             
-                                                    {{!-- <h5>{{ deal.status }}</h5> --}}
                                                 {{/isWaiting }}
 
-
                                                 {{#isAccepted deal.status }}
-                                                {{!-- <form action="/profile/{{deal.id}}/ended" method="POST">
-                                                    <button type="submit" class="btn btn-warning text-white center">Pendiente</button>
-                                                </form> --}}
-                                                
-                                                    <h5>{{ deal.status }}</h5>
+                                                    <h5 class="text-info">{{ deal.status }}</h5>
                                                 {{/isAccepted }}
 
-
                                                 {{#isCancelled deal.status }}
-                                                    <h5>{{ deal.status }}</h5>
+                                                    <h5 class="text-info">{{ deal.status }}</h5>
                                                 {{/isCancelled }}
 
                                                 {{#isEnded deal.status }}
                                                     <form action="/profile/{{deal.id}}/cancelled" method="POST">
                                                     <button type="submit" class="btn btn-warning text-white center">Cobrar servicio</button>
-                                                </form>
-                                                
-                                                    <h5>{{ deal.status }}</h5>
+                                                    </form>
                                                 {{/isEnded }}
+
+                                                {{!-- {{#isPaid }}
+                                                <h5 class="text-info"><i class="bi bi-check color-warning"></i>Finalizado</h5>
+                                                {{/isPaid }} --}}
 
                                             </div>
                                         </div>
@@ -137,50 +130,42 @@
 
                     {{else }}
 
-                        <h5 class="card-title text-warning">Estado de tu trato con {{ deal.serviceOwner.nickname }}</h5>
-                            <div class="card mb-3" style="max-width: 540px;">
+                            <div class="card mb-3" style="max-width: 620px;">
+                                
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src={{ deal.serviceOwner.avatarUrl }} alt="Imagen del usuario">
+                                    <div class="col-md-6">
+                                        <img src={{ deal.serviceOwner.avatar }} alt="Imagen del usuario">
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="card-body">
-                                            <h6 class="card-text">{{ deal.service.title }}</h6>
+                                            <h5 class="card-title text-warning mt-2 mb-2">Estado de tu trato con {{ deal.serviceOwner.nickname }}</h5>
+                                            <h5 class="card-text">{{ deal.service.title }}</h5>
                                             <p class="card-text">{{ deal.serviceOwner.description }}</p>
-                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }}</small></p>
+                                            <p class="card-text"><small class="text-muted">{{ deal.service.antCoins }} Antcoins</small></p>
                                             <div class="d-flex justify-content-end">
 
                                                 {{#isWaiting deal.status }}
                                                 <form action="/profile/{{deal.id}}/accepted" method="POST">
-                                                    {{!-- <a href="/profile/{{ deal.id }}/accepted" class="btn btn-info text-white m-2">Aceptar</a> --}}
-                                                    {{!-- <button type="submit" class="btn btn-warning text-white center">Aceptar</button>
-                                                </form>
-                                                <form action="/profile/{{deal.id}}/cancelled" method="POST">
-                                                    <button type="submit" class="btn btn-warning text-white center">Cancelar</button>
-                                                </form> --}}
-                                                
-                                                    <h5>{{ deal.status }}</h5>
+                                                <h5 class="text-warning">{{ deal.status }}</h5>
                                                 {{/isWaiting }}
-
 
                                                 {{#isAccepted deal.status }}
                                                 <form action="/profile/{{deal.id}}/ended" method="POST">
                                                     <button type="submit" class="btn btn-warning text-white center">Finalizar trato con {{ deal.serviceOwner.nickname}}</button>
                                                 </form>
-                                                    {{!-- <h5>{{ deal.status }}</h5> --}}
                                                 {{/isAccepted }}
 
-
                                                 {{#isCancelled deal.status }}
-                                                    <h5>{{ deal.status }}</h5>
+                                                    <h5 class="text-warning">{{ deal.status }}</h5>
                                                 {{/isCancelled }}
 
-
                                                 {{#isEnded deal.status }}
-                                                    Trato finalizado con {{ deal.serviceOwner.nickname}}
-                                                
-                                                    <h5>{{ deal.status }}</h5>
+                                                    <h5 class="text-warning"><i class="bi bi-check color-warning"></i>Trato finalizado</h5>
                                                 {{/isEnded }}
+{{!-- 
+                                                {{#isPaid }}
+                                                <h5 class="text-info"><i class="bi bi-check color-warning"></i>Trato finalizado</h5>
+                                                {{/isPaid }} --}}
 
                                             </div>
                                         </div>
@@ -188,7 +173,6 @@
                                 </div>
                             </div>
                     {{/dealOwner }}
-
                 {{/each }}
             </div>
         </div>

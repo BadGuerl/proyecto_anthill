@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const CloudinaryStorage = require('multer-storage-cloudinary').CloudinaryStorage;
@@ -11,8 +12,8 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'ironhack-cp/user-avatars',
-    format: 'jpeg'
+    folder: 'user-avatars',
+    format: 'jpeg',
   }
 });
 

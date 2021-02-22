@@ -90,6 +90,7 @@ module.exports.cancelDeal = (req, res, next) => {
      .then((deal) => {
        if (deal) {
          res.redirect('/profile');
+        //  res.render('/otherProfile');
        } else {
          next(createError(404, 'Este trato no existe'));
        }
@@ -108,3 +109,29 @@ module.exports.cancelDeal = (req, res, next) => {
      });
  }
 
+ module.exports.payDeal = (req, res, next) => {
+  const dealId = req.params.id;
+  req.body.status = 'Pagado'
+  Deal.findOneAndReplace(dealId, { $set: req.body }, { runValidators: true })
+    .then((deal) => {
+      console.log(interestedUser)
+      if (deal.antCoins >= interestedUser.antCoins) {
+        interestedUser.antCoins(balance - interestedUser.antCoins && serviceOwner.antCoins + balance);
+        res.redirect('/profile');
+      }else {
+        next(createError(404, 'Este trato no existe'));
+      }
+    })
+    .catch((error) => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        const deal = req.body;
+        deal.id = req.params.id;
+        res.render('/profile', {
+          errors: error.errors,
+          deal: deal,
+        });
+      } else {
+        next(error);
+      }
+    });
+ }

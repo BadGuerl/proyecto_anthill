@@ -64,7 +64,7 @@ app.use((error, req, res, next) => {
     error = createError(404, 'Resource not found')
   }
 
-  console.error(error);
+  // console.error(error);
   let status = error.status || 500;
 
   res.status(status).render('error', {

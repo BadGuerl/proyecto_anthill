@@ -5,7 +5,7 @@
         "nickname": "anaurri",
         "bio": "Hola soy jardinera lfsdklsdklsdklsadasd",
         "phoneNumber": 123456789,
-        "avatarUrl": "images/default-avatar.png",
+        "avatar": "images/default-avatar.png",
         "balance": 40
       },
       {
@@ -14,7 +14,7 @@
         "nickname": "silvia",
         "bio": "Hola soy cocinera lfsdklsdklsdklsadasd",
         "phoneNumber": 987654321,
-        "avatarUrl": "images/default-avatar.png",
+        "avatar": "images/default-avatar.png",
         "balance": 30
         }
 

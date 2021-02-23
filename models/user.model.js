@@ -26,7 +26,7 @@ const userSchema = new Schema({
   bio: {
     type: String,
     maxlength: 500,
-    default: "Escribe algo sobre ti"
+    default: "Biografía vacía"
   },
   phoneNumber: {
     type: String,

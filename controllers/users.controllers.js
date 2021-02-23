@@ -59,8 +59,7 @@ module.exports.logout = (req, res, next) => {
   res.redirect('/login');
 };
 
-module.exports.userProfile = (req, res, next) => {
-  
+module.exports.userProfile = (req, res, next) => { 
   Service.find({
     owner: res.locals.currentUser.id
   })
@@ -97,7 +96,6 @@ module.exports.userProfile = (req, res, next) => {
 
 module.exports.updateProfile = (req, res, next) => {
   console.log(req);
-
   function renderWithErrors(errors) {
     Object.assign(req.user, req.body);
     res.status(400).render('users/profile', {

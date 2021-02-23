@@ -8,7 +8,7 @@
     <div class="padding">
         <div class="row container d-flex justify-content-center">
             <div class="col-md-8">
-                <form action="/profile" method="post">
+                <form action="/profile" method="post" enctype="multipart/form-data">
                     <div class="card user-card-full">
                         <div class="row m-l-0 m-r-0">
                             <div class="col-sm-4 bg-info user-profile">
@@ -42,8 +42,7 @@
                                             <div class="col">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="form6Example1">Contraseña Nueva</label>
-                                                    <input type="password"
-                                                        class="form-control {{isInvalid errors.password }}" name="password" placeholder="Password">
+                                                    <input type="password" class="form-control {{isInvalid errors.password }}" name="password" placeholder="Password">
                                                     {{formError errors.password }}
                                                 </div>
                                             </div>
@@ -63,7 +62,7 @@
 
                                         <div class="input-group mt-3">
                                             <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="avatar" name="avatar">
+                                                    <input type="file" class="custom-file-input" id="cloudinary://322462519218433:6XV7RuJ80qQaev-0ZfeX1tBIu00@anthillweb" name="avatar">
                                                     <label class="custom-file-label" for="avatar"></label>
                                             </div>
                                         </div>

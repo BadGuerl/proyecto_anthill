@@ -1,25 +1,27 @@
-<form method="POST" action="/register" class="col-lg-6 col-md-8 mx-auto">
-  <img src="images/logo.png" class="img-thumbnail bg-transparent border-0 mb-4" alt="logo image">
-  <h1 class="fw-normal text-warning mb-4">Registrate</h1>
+<div class="mb-5">
+  <form method="POST" action="/register" class="col-lg-6 col-md-8 mx-auto mb-5">
+    <img src="images/logo.png" class="img-thumbnail bg-transparent border-0 mb-4" alt="logo image">
+    <h1 class="fw-normal text-warning mb-4">Registrate</h1>
+      <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input name="nickname" value="{{ user.nickname }}" type="nickname" class="form-control {{#if errors.nickname }}is-invalid{{/if}}" autocomplete="off">
+      {{#if errors.nickname }}<div class="invalid-feedback">{{ errors.nickname }}</div>{{/if}}
+    </div>
     <div class="mb-3">
-    <label class="form-label">Nombre</label>
-    <input name="nickname" value="{{ user.nickname }}" type="nickname" class="form-control {{#if errors.nickname }}is-invalid{{/if}}" autocomplete="off">
-    {{#if errors.nickname }}<div class="invalid-feedback">{{ errors.nickname }}</div>{{/if}}
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Email</label>
-    <input name="email" value="{{ user.email }}" type="email" class="form-control {{#if errors.email }}is-invalid{{/if}}" aria-describedby="emailHelp" autocomplete="off">
-    {{#if errors.email }}<div class="invalid-feedback">{{ errors.email }}</div>{{/if}}
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Contraseña</label>
-    <input name="password" type="password" class="form-control  {{#if errors.password }}is-invalid{{/if}}" autocomplete="off">
-    {{#if errors.password }}<div class="invalid-feedback">{{ errors.password }}</div>{{/if}}
-    <div id="emailHelp" class="form-text">Debe tener al menos 8 caracteres</div>
+      <label class="form-label">Email</label>
+      <input name="email" value="{{ user.email }}" type="email" class="form-control {{#if errors.email }}is-invalid{{/if}}" aria-describedby="emailHelp" autocomplete="off">
+      {{#if errors.email }}<div class="invalid-feedback">{{ errors.email }}</div>{{/if}}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input name="password" type="password" class="form-control  {{#if errors.password }}is-invalid{{/if}}" autocomplete="off">
+      {{#if errors.password }}<div class="invalid-feedback">{{ errors.password }}</div>{{/if}}
+      <div id="emailHelp" class="form-text">Debe tener al menos 8 caracteres</div>
 
-  </div>
-  <button type="submit" class="btn btn-primary bg-warning border-warning">Crear</button>
-</form>
+    </div>
+    <button type="submit" class="btn btn-primary bg-warning border-warning mb-5">Crear</button>
+  </form>
+</div>
 
 {{!-- is-invalid es un clase de boostrap q me pone en rojo el cuadro , solo lo queremos SI hay error.
 Las cosas entre {{}} si tiene # es una función que ya tiene handlebars,(como el if)

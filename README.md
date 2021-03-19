@@ -1,32 +1,13 @@
-EN GITHUB:
-creamos una rama :rama_trabajo
+Segundo proyecto del curso FULL-STACK DEVELOPER de IRONHACK.
+ENLACE: https://anthill-project.herokuapp.com/home
 
-EN LOCAL:
- git checkout -b rama_trabajo  --> si no está creada
- git checkout rama_trabajo  --> si ya está creada
- git pull origin register
- ....codificamos....
- git add .
- git commit -m feat "blabla"
- git push origin rama_trabajo
+Realizado por ANA URRIALDE y YO.
 
+ANTHILL es una web para crear una comunidad de servicios, en la que puedes hacer un intercambio de habilidades a cambio de puntos. Estos puntos se consiguen al haber realizado algún servicio a la comunidad, y a partir de ahí ya se pueden solicitar otros servicios. Disponemos de una tabla de puntos en la cual puedes basarte para valorar tus servicios. Cada participante de la comunidad pone en valor sus habilidades, las cuales puedes aceptar o llegar a un acuerdo con el ofertante del servicio. Siempre bajo un estricto código de respeto y cordialidad entre los participantes. Y así crear una gran comunidad de hormiguitas, en la que todas somos iguales.
+![image](https://user-images.githubusercontent.com/69985189/111759982-7ee3ca00-889e-11eb-90a7-620c35521946.png)
 
-git branch te indica las ramas que tienes y en cual te encuentras
-git log te dice los ultimos movimientos entre ramas 
+Para realizar este proyecto se han utilizado las TECNOLOGÍAS MONGODB, EXPRESS, NODEJS, con Javascript y CSS, Bootstrap y Handlebars. En el proyecto se ha practido la validación de formularios seguros, con la libreria Encrypt. Y la utilización de Midlewares. La maquetación (responsive) se ha realizado siguiendo las necesidades de adaptación a los diferentes dispositivos.
 
+![image](https://user-images.githubusercontent.com/69985189/111760229-c0747500-889e-11eb-9af2-72fc15a9d67c.png)
 
-EN GITHUB:
- para mergear a la rama master --> hacemos una pull request 
-
-
-
-
- PARA BORRAR RAMAS LOCALES --> git branch -D rama_a_borrar
- PARA BORRAR RAMAS EN GITHUB --> es intuitivo, en ver branches --> papelera
-
-
-holi!
-
-
-heroku: 
-download and install: esto si tienes q hacer tu tambien
+¡ESPERO QUE TE HAYA GUSTADO! ;)

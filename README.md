@@ -10,4 +10,5 @@ Para realizar este proyecto se han utilizado las TECNOLOGÍAS MONGODB, EXPRESS, 
 
 ![image](https://user-images.githubusercontent.com/69985189/111760229-c0747500-889e-11eb-9af2-72fc15a9d67c.png)
 
+Sientete libre de crearte un perfil y probar la página, es solo un trabajo de clase (de momento).
 ¡ESPERO QUE TE HAYA GUSTADO! ;)
